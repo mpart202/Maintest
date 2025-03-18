@@ -1,0 +1,271 @@
+{
+    "user_id": {
+        "password": "hashed_password",
+        "email": "user@example.com",
+        "security_questions": [
+            {
+                "question": "Pregunta 1",
+                "answer": "respuesta_hash"
+            },
+            {
+                "question": "Pregunta 2",
+                "answer": "respuesta_hash"
+            }
+        ]
+    },
+    "test": {
+        "password": "$2b$12$SpuMd2GPUyNOHvWlFOJDwODIcjN7fWdasbhgCXuXf5j1mnduHmc2O"
+    },
+    "mpart14": {
+        "password": "$2b$12$s7BnRy4ZRqUBVE9Z1S4Vq.ex5TZsbcLhiDWK0fE2dXWni6ohSJIKK",
+        "email": "test@gmail.com",
+        "security_questions": [
+            {
+                "question": "\u00bfEn qu\u00e9 ciudad naciste?",
+                "answer": "a4bd1d3a69aa0ea6ffb1298c8c26be4b333526cae7d27f2362f89857157701ce"
+            },
+            {
+                "question": "\u00bfEn qu\u00e9 ciudad naciste?",
+                "answer": "b3b13d054fb24bfe995f9f0e85e1ce58c09628bc80b3609f1ae2a40c732749dc"
+            }
+        ]
+    },
+    "mpart00": {
+        "password": "$2b$12$1CkXE/scXFPmR8AEH80LD.myup4e.8aIBe.Chl0sOdDjulVsx/idu",
+        "email": "test@gmail.com",
+        "security_questions": [
+            {
+                "question": "\u00bfCu\u00e1l es el nombre de tu primera mascota?",
+                "answer": "ca2ab7a08500542a01b01352387dff6444282b6e443875637b6ae2c37689a51b"
+            },
+            {
+                "question": "\u00bfEn qu\u00e9 ciudad naciste?",
+                "answer": "b3b13d054fb24bfe995f9f0e85e1ce58c09628bc80b3609f1ae2a40c732749dc"
+            }
+        ]
+    },
+    "mpart20": {
+        "password": "$2b$12$uN8I067sRA5Hj1z8klfH/e0o4xbWkg.v3rkp87b94Ang5IoG6kRtC",
+        "email": "test@gmail.com",
+        "security_questions": [
+            {
+                "question": "\u00bfCu\u00e1l es el nombre de tu primera mascota?",
+                "answer": "ca2ab7a08500542a01b01352387dff6444282b6e443875637b6ae2c37689a51b"
+            },
+            {
+                "question": "\u00bfEn qu\u00e9 ciudad naciste?",
+                "answer": "b3b13d054fb24bfe995f9f0e85e1ce58c09628bc80b3609f1ae2a40c732749dc"
+            }
+        ]
+    },
+    "Droopy27": {
+        "password": "$2b$12$skeeyqJ6.NrbzsgXuAaURu3TIh4lZPVHu5680OVsCsK1gNJqex.yi",
+        "email": "andresdaspett@gmail.com",
+        "security_questions": [
+            {
+                "question": "\u00bfCu\u00e1l es el segundo nombre de tu madre?",
+                "answer": "14d78be4344d4b2c7b20ace352a3b18ba74d14083d703e2d8980daf41900cfaa"
+            },
+            {
+                "question": "\u00bfEn qu\u00e9 ciudad naciste?",
+                "answer": "0f54ebc2ec436a0b516e0c8aafb9ff18dc8a2f20ab5e837d98c62873e013d5fc"
+            }
+        ]
+    },
+    "Kotor86": {
+        "password": "$2b$12$rPBCTBHUxIxA5VvKs8L/TOvE.miPUHVbS3BKeV5.DmlwfNHX.v/WW",
+        "email": "alejomiguez@gmail.com",
+        "security_questions": [
+            {
+                "question": "\u00bfCu\u00e1l es el nombre de tu primera mascota?",
+                "answer": "9fb63d2ebace166201e8e3d4935fa3a92c99c07d048aad9cb49de917c664c0ec"
+            },
+            {
+                "question": "\u00bfCu\u00e1l es el segundo nombre de tu madre?",
+                "answer": "011bb7004541265e2e42a759921d7894f6ed7a6cca39636fc5409f2e96d7e490"
+            }
+        ]
+    },
+    "mpart202": {
+        "password": "$2b$12$vDy73rsf6EPrFBeLaLibsePZKQWg.6XdBraDVHIQwrDiPUF9P7DNe",
+        "email": "partjuliom@gmail.com",
+        "security_questions": [
+            {
+                "question": "\u00bfCu\u00e1l es el nombre de tu primera mascota?",
+                "answer": "c661bac0925764b02e2da80ca27d70a773e7a1909e29588f463d93b4125a2d0e"
+            },
+            {
+                "question": "\u00bfEn qu\u00e9 ciudad naciste?",
+                "answer": "e7738767edb7e6f5d0cd37b013a2e75b786eb9dde99c6661bc3066b6e32d6a35"
+            }
+        ]
+    },
+    "Jardian": {
+        "password": "$2b$12$zWpcgzT/B7zV4HKMS9Y8SewU4VkJ81VIY2huIaFnLFKyKirzF2N/u",
+        "email": "gbonacossa@gmail.com",
+        "security_questions": [
+            {
+                "question": "\u00bfCu\u00e1l es el nombre de tu primera mascota?",
+                "answer": "659230e74c03f879785f4ce420acb223cc6f0e47a1996a6cd79795e9487d0a74"
+            },
+            {
+                "question": "\u00bfCu\u00e1l es el segundo nombre de tu madre?",
+                "answer": "2cfe7144509dfeaffc6a21e261dfcc6f5bb911a8b2b3195d7244ed68ec983f73"
+            }
+        ]
+    },
+    "bibitoons": {
+        "password": "$2b$12$369Z4UsJIL/m9yjdVLHCJOfxLtMlcDk6WtvBSlvVximNEYYdRdOiW",
+        "email": "bibitoons.17@gmail.com",
+        "security_questions": [
+            {
+                "question": "\u00bfEn qu\u00e9 ciudad naciste?",
+                "answer": "6121c11727d9725178c69847cf1461c756563afac208a66e59361ea68352f1cf"
+            },
+            {
+                "question": "\u00bfCu\u00e1l fue tu primer autom\u00f3vil?",
+                "answer": "208e9671f6e7fd750843df6ac5ebec86df39c51f5ad2740b12df812621551d92"
+            }
+        ]
+    },
+    "Tahiel": {
+        "password": "$2b$12$1zFG2iAN7f004cpZEuQgn.Rcas/a4zC/yFQa3AVWCzTVtPSDdV2.6",
+        "email": "arestahiel@gmail.com",
+        "security_questions": [
+            {
+                "question": "\u00bfCu\u00e1l es tu pel\u00edcula favorita?",
+                "answer": "5780307c33cb682c1c3d4388f9798c1f4014d53970cde330595da8f81d75b786"
+            },
+            {
+                "question": "\u00bfCu\u00e1l es tu color favorito?",
+                "answer": "82a907af334432efd677bfc7b3c4106e2cd4822eb82dc99c2b10bcf02426c584"
+            }
+        ]
+    },
+    "Amtm11": {
+        "password": "$2b$12$DuA0nNS3/iJYegV.9eIUGOGUAQMyWDjwDHMOH2M4IgZJky7rDiK7S",
+        "email": "agostinamacagno@gmail.com",
+        "security_questions": [
+            {
+                "question": "\u00bfCu\u00e1l es el nombre de tu primera mascota?",
+                "answer": "4610d132df8aa2e50c26164805e50620459eddd057198b9582dbe2c9f56be813"
+            },
+            {
+                "question": "\u00bfCu\u00e1l es tu color favorito?",
+                "answer": "d47fe111e2429c3635672c10cdbffc0161ffd7538405bbc86402dafca23f83cc"
+            }
+        ]
+    },
+    "prueba": {
+        "password": "$2b$12$dM76OOOFUDhWhGb3dOg0CezwGj/Sgg78i3otLlHo0P4NdyWEUmu0O",
+        "email": "prueba@test.com",
+        "security_questions": [
+            {
+                "question": "\u00bfCu\u00e1l es el nombre de tu primera mascota?",
+                "answer": "900df7ebcee96b94456f99b5293b403a583731d27f11a385140e9f7abdac806d"
+            },
+            {
+                "question": "\u00bfEn qu\u00e9 ciudad naciste?",
+                "answer": "e7738767edb7e6f5d0cd37b013a2e75b786eb9dde99c6661bc3066b6e32d6a35"
+            }
+        ]
+    },
+    "GLTrade": {
+        "password": "$2b$12$FgDhs6zJ27/mjSE7NncL.Omxs62Jx4E6EW8s21ALlqP73U.zN/coK",
+        "email": "ramirolavoz@gmail.com",
+        "security_questions": [
+            {
+                "question": "\u00bfCu\u00e1l es el nombre de tu primera mascota?",
+                "answer": "9a2a3989a492f6c418ffb132d185ab08f4b0306c1c2cdf05132570f6921889b4"
+            },
+            {
+                "question": "\u00bfEn qu\u00e9 ciudad naciste?",
+                "answer": "9ef8dad57baf76e1b5b20b546e5b268d6818bc7d0be5c37bdb7a368dd0bd74a0"
+            }
+        ]
+    },
+    "Charles96": {
+        "password": "$2b$12$Yr6EGisfUveasSchsCBr7uprmVUxNfH5MOcfxG.OVTLcd3bazCLQu",
+        "email": "mtcha23@gmail.com",
+        "security_questions": [
+            {
+                "question": "\u00bfCu\u00e1l es el nombre de tu primera mascota?",
+                "answer": "3f7b129fb78bf2224684bfa95842ae5f5ca36865031d0c56ae720f2278aff64c"
+            },
+            {
+                "question": "\u00bfEn qu\u00e9 ciudad naciste?",
+                "answer": "56af2a92a9cc9774ba8970998267e5b27957704ffb42987c276455491218640e"
+            }
+        ]
+    },
+    "danielagiusti": {
+        "password": "$2b$12$nhp3/Dzq9YAtV4V.P2AQuetfHWhqctJHN9.MKtsyF7pb/nH9qJBUC",
+        "email": "m.daniela.giusti@gmail.com",
+        "security_questions": [
+            {
+                "question": "\u00bfCu\u00e1l es el segundo nombre de tu madre?",
+                "answer": "f093f4afb64abaa186caf20df8dd60c47578dbe7ad323354395b279d1169ca99"
+            },
+            {
+                "question": "\u00bfCu\u00e1l fue tu primer autom\u00f3vil?",
+                "answer": "171d8775576c4cc360329320489177287481b023e4e16a64936cc4b44965dd71"
+            }
+        ]
+    },
+    "camilolwi": {
+        "password": "$2b$12$czdgJ5MHUtR.YZ4.KA.wd.9ef0oMk1GPHaKu4wmqtm75SNwbZ2TYO",
+        "email": "camilolwi@proton.me",
+        "security_questions": [
+            {
+                "question": "\u00bfEn qu\u00e9 ciudad naciste?",
+                "answer": "b8892bf1b6e1dc2738a5797ef888b5a70f3925e08ee4cbb79f096f8d0b20b58c"
+            },
+            {
+                "question": "\u00bfCu\u00e1l es tu color favorito?",
+                "answer": "e59122364a72bc0e30fcba0516881fd1f0ef3ce95440398a94245ca64df71b97"
+            }
+        ]
+    },
+    "Natbot": {
+        "password": "$2b$12$qFBSESvDzDsTNeJdK.qaXOg4OcLoaPelzt7Or3VRahC3jsteXeNx2",
+        "email": "natanaelgall@gmail.com",
+        "security_questions": [
+            {
+                "question": "\u00bfCu\u00e1l es tu color favorito?",
+                "answer": "0fa540dd2fe2f0213fa2e5bc364418426338a1dbfec5beb08639c786e874d0dc"
+            },
+            {
+                "question": "\u00bfCu\u00e1l es el segundo nombre de tu madre?",
+                "answer": "cd464c20790724a1100742f9d53bb9e0caf37dbae9e69b7e616fe8b1afad1031"
+            }
+        ]
+    },
+    "david.alej.drt@gmail": {
+        "password": "$2b$12$vO4ccBQMx/Z9MC21cUjr8.FldUAamwxdkC6XVRY2.RQ2aCsYLQk6S",
+        "email": "david.alej.drt@gmail.com",
+        "security_questions": [
+            {
+                "question": "\u00bfCu\u00e1l es el nombre de tu primera mascota?",
+                "answer": "f9bb49a65d045dd3cdeca315c1e7ea720c3e96a88ec5ed49b4e9634276782237"
+            },
+            {
+                "question": "\u00bfEn qu\u00e9 ciudad naciste?",
+                "answer": "f9bb49a65d045dd3cdeca315c1e7ea720c3e96a88ec5ed49b4e9634276782237"
+            }
+        ]
+    },
+    "averna": {
+        "password": "$2b$12$7AKwlRg.Ffs9W9alHSiRWeSfEzuSEhpWEi300ISHUuq8ZuL.iuMPa",
+        "email": "recuperosusdatos@hotmail.com",
+        "security_questions": [
+            {
+                "question": "\u00bfCu\u00e1l es el nombre de tu primera mascota?",
+                "answer": "15c495102c9f3725f4d71c4b928a7be385baadf15c69b81bca30f6dff1552b2c"
+            },
+            {
+                "question": "\u00bfCu\u00e1l fue tu primer autom\u00f3vil?",
+                "answer": "72480500ff8ee02f93bfc64301945239d58331f9fd4a8233c121ef1d5e8284f8"
+            }
+        ]
+    }
+}

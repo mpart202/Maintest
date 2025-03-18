@@ -1,0 +1,958 @@
+2025-03-15 09:44:24,417 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5004
+ * Running on http://192.168.103.164:5004
+2025-03-15 09:44:24,418 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-15 09:44:32,617 - INFO - 127.0.0.1 - - [15/Mar/2025 09:44:32] "GET / HTTP/1.1" 200 -
+2025-03-15 09:44:32,749 - INFO - 127.0.0.1 - - [15/Mar/2025 09:44:32] "GET / HTTP/1.1" 200 -
+2025-03-15 09:44:32,834 - INFO - 127.0.0.1 - - [15/Mar/2025 09:44:32] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2025-03-15 09:44:32,878 - INFO - 127.0.0.1 - - [15/Mar/2025 09:44:32] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2025-03-15 09:44:34,197 - INFO - 127.0.0.1 - - [15/Mar/2025 09:44:34] "GET /stream/test HTTP/1.1" 200 -
+2025-03-15 09:44:34,269 - INFO - 127.0.0.1 - - [15/Mar/2025 09:44:34] "GET /stream/test HTTP/1.1" 200 -
+2025-03-15 09:44:39,957 - INFO - 127.0.0.1 - - [15/Mar/2025 09:44:39] "POST /start_exchange HTTP/1.1" 200 -
+2025-03-15 09:44:44,482 - INFO - 127.0.0.1 - - [15/Mar/2025 09:44:44] "[32mGET /mercado/ HTTP/1.1[0m" 302 -
+2025-03-15 09:44:44,576 - INFO - 127.0.0.1 - - [15/Mar/2025 09:44:44] "GET /mercado/mercado HTTP/1.1" 200 -
+2025-03-15 09:44:44,668 - INFO - 127.0.0.1 - - [15/Mar/2025 09:44:44] "[33mGET /mercado/static/styles.css HTTP/1.1[0m" 404 -
+2025-03-15 09:45:08,238 - ERROR - Stream error: 
+2025-03-15 09:45:08,239 - INFO - 127.0.0.1 - - [15/Mar/2025 09:45:08] "GET /mercado/api/price-stream/B2?tokens=AAVE/USDT&user_id=test HTTP/1.1" 200 -
+2025-03-15 09:45:11,804 - ERROR - Error general al obtener balance para LB: 
+2025-03-15 09:45:11,805 - INFO - 127.0.0.1 - - [15/Mar/2025 09:45:11] "GET /mercado/api/account-balance/LB HTTP/1.1" 200 -
+2025-03-15 09:45:13,195 - ERROR - Error general al obtener balance para B2: 
+2025-03-15 09:45:13,196 - INFO - 127.0.0.1 - - [15/Mar/2025 09:45:13] "GET /mercado/api/account-balance/B2 HTTP/1.1" 200 -
+2025-03-15 09:45:14,488 - ERROR - Error específico al obtener balance para OKX: 
+2025-03-15 09:45:14,489 - INFO - 127.0.0.1 - - [15/Mar/2025 09:45:14] "GET /mercado/api/account-balance/OKX HTTP/1.1" 200 -
+2025-03-15 09:45:15,580 - ERROR - Error al inicializar el exchange OKX: 
+2025-03-15 09:45:16,819 - ERROR - Stream error: 
+2025-03-15 09:45:16,821 - INFO - 127.0.0.1 - - [15/Mar/2025 09:45:16] "GET /mercado/api/price-stream/OKX?tokens=ADA/USDT,XRP/USDT,BTC/USDT,AVAX/USDT,BNB/USDT,LTC/USDT,LINK/USDT,ETH/USDT,DOT/USDT,DOGE/USDT,ATOM/USDT,AAVE/USDT,BCH/USDT,ONDO/USDT,HBAR/USDT,POL/USDT&user_id=test HTTP/1.1" 200 -
+2025-03-15 09:45:26,844 - ERROR - Stream error: 
+2025-03-15 09:45:33,243 - ERROR - Error al inicializar el exchange B2 para test: 
+2025-03-15 09:45:33,756 - ERROR - Error al obtener tickers para B2: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:33,783 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:33,784 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:33,785 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:34,989 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:36,162 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:37,346 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:38,531 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:39,718 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:40,898 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:42,086 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:43,268 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:44,448 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:45,589 - ERROR - Error al cargar mercados para OKX: 
+2025-03-15 09:45:45,637 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:46,823 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:48,013 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:49,188 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:50,383 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:51,566 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:51,804 - ERROR - Error al cargar mercados para OKX: 
+2025-03-15 09:45:51,819 - ERROR - Error al cargar mercados para OKX: 
+2025-03-15 09:45:52,745 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:53,926 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:55,107 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:56,297 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:57,482 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:58,649 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:45:59,831 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:01,016 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:02,204 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:03,390 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:04,569 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:05,754 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:06,938 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:08,115 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:09,307 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:10,487 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:11,669 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:12,848 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:14,028 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:15,220 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:15,236 - ERROR - Error al cargar mercados para OKX: 
+2025-03-15 09:46:15,601 - ERROR - Error al cargar mercados para B2: 
+2025-03-15 09:46:15,602 - INFO - 127.0.0.1 - - [15/Mar/2025 09:46:15] "GET /mercado/api/available-tokens HTTP/1.1" 200 -
+2025-03-15 09:46:16,404 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:17,592 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:18,777 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:19,979 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:21,160 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:21,807 - ERROR - Error al cargar mercados para B2: 
+2025-03-15 09:46:21,808 - INFO - 127.0.0.1 - - [15/Mar/2025 09:46:21] "GET /mercado/api/available-tokens HTTP/1.1" 200 -
+2025-03-15 09:46:21,823 - ERROR - Error al cargar mercados para B2: 
+2025-03-15 09:46:21,825 - INFO - 127.0.0.1 - - [15/Mar/2025 09:46:21] "GET /mercado/api/available-tokens HTTP/1.1" 200 -
+2025-03-15 09:46:22,345 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:23,527 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:24,713 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:25,899 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:27,079 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:28,260 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:29,443 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:30,627 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:31,817 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:33,001 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:34,174 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:35,363 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:36,540 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:37,718 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:38,898 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:40,076 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:41,253 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:42,437 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:43,613 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:44,799 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:45,237 - ERROR - Error al cargar mercados para B2: 
+2025-03-15 09:46:45,239 - INFO - 127.0.0.1 - - [15/Mar/2025 09:46:45] "GET /mercado/api/available-tokens HTTP/1.1" 200 -
+2025-03-15 09:46:45,661 - ERROR - Error al cargar mercados para OKX: 
+2025-03-15 09:46:45,978 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:47,156 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:48,335 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:49,517 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:50,699 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:51,881 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:53,068 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:54,250 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:55,446 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:56,627 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:57,807 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:46:58,988 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:00,175 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:01,359 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:02,544 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:03,729 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:04,910 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:06,081 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:07,267 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:08,447 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:09,629 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:10,816 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:11,996 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:13,178 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:14,364 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:15,540 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:15,664 - ERROR - Error al cargar mercados para B2: 
+2025-03-15 09:47:15,665 - INFO - 127.0.0.1 - - [15/Mar/2025 09:47:15] "GET /mercado/api/available-tokens HTTP/1.1" 200 -
+2025-03-15 09:47:16,726 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:17,918 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:19,102 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:20,281 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:21,470 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:22,659 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:23,830 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:25,011 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:26,194 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:27,377 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:28,568 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:29,754 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:30,931 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:32,108 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:33,291 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:34,375 - ERROR - Error al obtener tickers para B2: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:34,377 - INFO - 127.0.0.1 - - [15/Mar/2025 09:47:34] "GET /mercado/api/price-stream/B2?tokens=AAVE/USDT&user_id=test HTTP/1.1" 200 -
+2025-03-15 09:47:34,470 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:35,729 - ERROR - Error al obtener tickers para B2: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:36,952 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:36,954 - INFO - 127.0.0.1 - - [15/Mar/2025 09:47:36] "GET /mercado/api/price-stream/OKX?tokens=ADA/USDT,XRP/USDT,BTC/USDT,AVAX/USDT,BNB/USDT,LTC/USDT,LINK/USDT,ETH/USDT,DOT/USDT,DOGE/USDT,ATOM/USDT,AAVE/USDT,BCH/USDT,ONDO/USDT,HBAR/USDT,POL/USDT&user_id=test HTTP/1.1" 200 -
+2025-03-15 09:47:37,075 - ERROR - Error al obtener tickers para B2: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:38,137 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:39,326 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:39,660 - INFO - 127.0.0.1 - - [15/Mar/2025 09:47:39] "GET /mercado/mercado HTTP/1.1" 200 -
+2025-03-15 09:47:39,748 - INFO - 127.0.0.1 - - [15/Mar/2025 09:47:39] "[33mGET /mercado/static/styles.css HTTP/1.1[0m" 404 -
+2025-03-15 09:47:40,512 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:47:44,042 - ERROR - Error específico al obtener balance para B2: 
+2025-03-15 09:47:44,043 - INFO - 127.0.0.1 - - [15/Mar/2025 09:47:44] "GET /mercado/api/account-balance/B2 HTTP/1.1" 200 -
+2025-03-15 09:47:46,751 - ERROR - Error específico al obtener balance para OKX: 
+2025-03-15 09:47:46,752 - INFO - 127.0.0.1 - - [15/Mar/2025 09:47:46] "GET /mercado/api/account-balance/OKX HTTP/1.1" 200 -
+2025-03-15 09:48:10,846 - ERROR - Error al cargar mercados para OKX: 
+2025-03-15 09:48:40,848 - ERROR - Error al cargar mercados para B2: 
+2025-03-15 09:48:40,850 - INFO - 127.0.0.1 - - [15/Mar/2025 09:48:40] "GET /mercado/api/available-tokens HTTP/1.1" 200 -
+2025-03-15 09:48:41,150 - ERROR - Error al obtener tickers para B2: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:48:41,151 - INFO - 127.0.0.1 - - [15/Mar/2025 09:48:41] "GET /mercado/api/price-stream/B2?tokens=AAVE/USDT&user_id=test HTTP/1.1" 200 -
+2025-03-15 09:48:42,487 - ERROR - Error al obtener tickers para B2: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:48:42,975 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:48:42,977 - INFO - 127.0.0.1 - - [15/Mar/2025 09:48:42] "GET /mercado/api/price-stream/OKX?tokens=ADA/USDT,XRP/USDT,BTC/USDT,AVAX/USDT,BNB/USDT,LTC/USDT,LINK/USDT,ETH/USDT,DOT/USDT,DOGE/USDT,ATOM/USDT,AAVE/USDT,BCH/USDT,ONDO/USDT,HBAR/USDT,POL/USDT&user_id=test HTTP/1.1" 200 -
+2025-03-15 09:48:43,846 - ERROR - Error al obtener tickers para B2: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:48:44,159 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:48:44,554 - INFO - 127.0.0.1 - - [15/Mar/2025 09:48:44] "GET /mercado/mercado HTTP/1.1" 200 -
+2025-03-15 09:48:44,664 - INFO - 127.0.0.1 - - [15/Mar/2025 09:48:44] "[33mGET /mercado/static/styles.css HTTP/1.1[0m" 404 -
+2025-03-15 09:48:45,346 - ERROR - Error al obtener tickers para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 09:48:48,409 - INFO - 127.0.0.1 - - [15/Mar/2025 09:48:48] "GET / HTTP/1.1" 200 -
+2025-03-15 09:48:48,502 - INFO - 127.0.0.1 - - [15/Mar/2025 09:48:48] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2025-03-15 09:48:49,075 - INFO - 127.0.0.1 - - [15/Mar/2025 09:48:49] "GET /stream/test HTTP/1.1" 200 -
+2025-03-15 09:48:50,761 - ERROR - Error específico al obtener balance para B2: 
+2025-03-15 09:48:50,763 - INFO - 127.0.0.1 - - [15/Mar/2025 09:48:50] "GET /mercado/api/account-balance/B2 HTTP/1.1" 200 -
+2025-03-15 09:48:51,454 - INFO - 127.0.0.1 - - [15/Mar/2025 09:48:51] "POST /start_exchange HTTP/1.1" 200 -
+2025-03-15 09:48:52,785 - ERROR - Error específico al obtener balance para OKX: 
+2025-03-15 09:48:52,786 - INFO - 127.0.0.1 - - [15/Mar/2025 09:48:52] "GET /mercado/api/account-balance/OKX HTTP/1.1" 200 -
+2025-03-15 09:49:10,872 - ERROR - Error al cargar mercados para OKX: 
+2025-03-15 09:49:15,234 - ERROR - Error al cargar mercados para OKX: 
+2025-03-15 09:49:23,125 - ERROR - Usuario test: Error al obtener órdenes Infinity para LTC/USDT: 
+2025-03-15 09:49:23,125 - ERROR - Usuario test: Error al obtener órdenes Infinity para ADA/USDT: 
+2025-03-15 09:49:23,125 - ERROR - Usuario test: Error al obtener órdenes Infinity para SOL/USDT: 
+2025-03-15 09:49:23,126 - ERROR - Usuario test: Error al obtener órdenes Infinity para XRP/USDT: 
+2025-03-15 09:49:23,416 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:23] "GET /view_exchange/OKX HTTP/1.1" 200 -
+2025-03-15 09:49:29,067 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:29] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:29,069 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:29] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:29,073 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:29] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:29,081 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:29] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:34,028 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:34] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:34,032 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:34] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:34,039 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:34] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:34,047 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:34] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:39,412 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:39] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:39,416 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:39] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:39,422 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:39] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:39,428 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:39] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:40,873 - ERROR - Error al cargar mercados para B2: 
+2025-03-15 09:49:40,874 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:40] "GET /mercado/api/available-tokens HTTP/1.1" 200 -
+2025-03-15 09:49:43,853 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:43] "POST /start_token HTTP/1.1" 200 -
+2025-03-15 09:49:44,420 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:44] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:44,424 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:44] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:44,430 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:44] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:44,438 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:44] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:45,235 - ERROR - Error al cargar mercados para B2: 
+2025-03-15 09:49:45,236 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:45] "GET /mercado/api/available-tokens HTTP/1.1" 200 -
+2025-03-15 09:49:49,418 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:49] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:49,438 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:49] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:49,445 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:49] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:49,455 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:49] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 09:49:51,862 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:51] "GET / HTTP/1.1" 200 -
+2025-03-15 09:49:51,987 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:51] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2025-03-15 09:49:52,890 - INFO - 127.0.0.1 - - [15/Mar/2025 09:49:52] "GET /stream/test HTTP/1.1" 200 -
+2025-03-15 09:50:14,318 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:14] "GET / HTTP/1.1" 200 -
+2025-03-15 09:50:14,389 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:14] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2025-03-15 09:50:14,932 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:14] "GET /stream/test HTTP/1.1" 200 -
+2025-03-15 09:50:16,377 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:16] "POST /start_exchange HTTP/1.1" 200 -
+2025-03-15 09:50:23,039 - ERROR - Usuario test: Error al obtener órdenes Infinity para SOL/USDT: 
+2025-03-15 09:50:23,039 - ERROR - Usuario test: Error al obtener órdenes Infinity para LTC/USDT: 
+2025-03-15 09:50:23,039 - ERROR - Usuario test: Error al obtener órdenes Infinity para XRP/USDT: 
+2025-03-15 09:50:23,040 - ERROR - Usuario test: Error al obtener órdenes Infinity para ADA/USDT: 
+2025-03-15 09:50:23,048 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:23] "GET /view_exchange/OKX HTTP/1.1" 200 -
+2025-03-15 09:50:28,424 - ERROR - Usuario test: El exchange OKX aún parece tener una sesión activa. Revisión adicional recomendada.
+2025-03-15 09:50:28,425 - ERROR - Usuario test: El exchange B2 aún parece tener una sesión activa. Revisión adicional recomendada.
+2025-03-15 09:50:28,539 - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<market_memory_optimizer() running at C:\Users\LPCRAN\OneDrive\Escritorio\Backup server\BOTXI\test\main\mercado.py:107> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[_chain_future.<locals>._call_set_state() at C:\Users\LPCRAN\AppData\Local\Programs\Python\Python310\lib\asyncio\futures.py:391]>
+2025-03-15 09:50:28,541 - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<memory_optimizer() running at C:\Users\LPCRAN\OneDrive\Escritorio\Backup server\BOTXI\test\main\bot.py:112> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[_chain_future.<locals>._call_set_state() at C:\Users\LPCRAN\AppData\Local\Programs\Python\Python310\lib\asyncio\futures.py:391]>
+2025-03-15 09:50:34,077 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5004
+ * Running on http://192.168.103.164:5004
+2025-03-15 09:50:34,077 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-15 09:50:34,408 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:34] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 09:50:34,413 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:34] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 09:50:34,417 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:34] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 09:50:34,424 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:34] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 09:50:38,807 - ERROR - Usuario test: Error al obtener órdenes Infinity para SOL/USDT: 'OKX'
+2025-03-15 09:50:38,809 - ERROR - Usuario test: Error al obtener órdenes Infinity para LTC/USDT: 'OKX'
+2025-03-15 09:50:38,810 - ERROR - Usuario test: Error al obtener órdenes Infinity para XRP/USDT: 'OKX'
+2025-03-15 09:50:38,810 - ERROR - Usuario test: Error al obtener órdenes Infinity para ADA/USDT: 'OKX'
+2025-03-15 09:50:38,942 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:38] "GET /view_exchange/OKX HTTP/1.1" 200 -
+2025-03-15 09:50:40,632 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:40] "GET / HTTP/1.1" 200 -
+2025-03-15 09:50:40,709 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:40] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2025-03-15 09:50:41,327 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:41] "GET /stream/test HTTP/1.1" 200 -
+2025-03-15 09:50:42,580 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:42] "POST /start_exchange HTTP/1.1" 200 -
+2025-03-15 09:50:44,152 - ERROR - Usuario test: Error al obtener órdenes Infinity para SOL/USDT: 'OKX'
+2025-03-15 09:50:44,154 - ERROR - Usuario test: Error al obtener órdenes Infinity para LTC/USDT: 'OKX'
+2025-03-15 09:50:44,155 - ERROR - Usuario test: Error al obtener órdenes Infinity para XRP/USDT: 'OKX'
+2025-03-15 09:50:44,155 - ERROR - Usuario test: Error al obtener órdenes Infinity para ADA/USDT: 'OKX'
+2025-03-15 09:50:44,162 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:44] "GET /view_exchange/OKX HTTP/1.1" 200 -
+2025-03-15 09:50:50,265 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:50] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 09:50:50,268 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:50] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 09:50:50,277 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:50] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 09:50:50,280 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:50] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 09:50:55,427 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:55] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 09:50:55,433 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:55] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 09:50:55,440 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:55] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 09:50:55,446 - INFO - 127.0.0.1 - - [15/Mar/2025 09:50:55] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 09:51:00,260 - INFO - 127.0.0.1 - - [15/Mar/2025 09:51:00] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 09:51:00,263 - INFO - 127.0.0.1 - - [15/Mar/2025 09:51:00] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 09:51:00,271 - INFO - 127.0.0.1 - - [15/Mar/2025 09:51:00] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 09:51:00,277 - INFO - 127.0.0.1 - - [15/Mar/2025 09:51:00] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 09:51:00,779 - INFO - 127.0.0.1 - - [15/Mar/2025 09:51:00] "GET / HTTP/1.1" 200 -
+2025-03-15 09:51:00,869 - INFO - 127.0.0.1 - - [15/Mar/2025 09:51:00] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2025-03-15 09:51:01,274 - INFO - 127.0.0.1 - - [15/Mar/2025 09:51:01] "POST /start_token HTTP/1.1" 200 -
+2025-03-15 09:51:02,186 - INFO - 127.0.0.1 - - [15/Mar/2025 09:51:02] "GET /stream/test HTTP/1.1" 200 -
+2025-03-15 10:53:57,796 - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<memory_optimizer() done, defined at C:\Users\LPCRAN\OneDrive\Escritorio\Backup server\BOTXI\test\main\bot.py:102> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[_chain_future.<locals>._call_set_state() at C:\Users\LPCRAN\AppData\Local\Programs\Python\Python310\lib\asyncio\futures.py:391]>
+2025-03-15 10:53:57,798 - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<market_memory_optimizer() running at C:\Users\LPCRAN\OneDrive\Escritorio\Backup server\BOTXI\test\main\mercado.py:107> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[_chain_future.<locals>._call_set_state() at C:\Users\LPCRAN\AppData\Local\Programs\Python\Python310\lib\asyncio\futures.py:391]>
+2025-03-15 13:01:54,166 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.103.164:5003
+2025-03-15 13:01:54,167 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-15 13:01:58,361 - INFO - 127.0.0.1 - - [15/Mar/2025 13:01:58] "GET / HTTP/1.1" 200 -
+2025-03-15 13:01:58,410 - INFO - 127.0.0.1 - - [15/Mar/2025 13:01:58] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2025-03-15 13:02:00,853 - INFO - 127.0.0.1 - - [15/Mar/2025 13:02:00] "GET /stream/test HTTP/1.1" 200 -
+2025-03-15 13:02:12,080 - INFO - 127.0.0.1 - - [15/Mar/2025 13:02:12] "POST /start_exchange HTTP/1.1" 200 -
+2025-03-15 13:02:49,943 - ERROR - Usuario test: Error al obtener órdenes Infinity para SOL/USDT: 'OKX'
+2025-03-15 13:02:49,944 - ERROR - Usuario test: Error al obtener órdenes Infinity para LTC/USDT: 'OKX'
+2025-03-15 13:02:49,945 - ERROR - Usuario test: Error al obtener órdenes Infinity para XRP/USDT: 'OKX'
+2025-03-15 13:02:49,945 - ERROR - Usuario test: Error al obtener órdenes Infinity para ADA/USDT: 'OKX'
+2025-03-15 13:02:50,055 - INFO - 127.0.0.1 - - [15/Mar/2025 13:02:50] "GET /view_exchange/OKX HTTP/1.1" 200 -
+2025-03-15 13:02:56,405 - INFO - 127.0.0.1 - - [15/Mar/2025 13:02:56] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:02:56,408 - INFO - 127.0.0.1 - - [15/Mar/2025 13:02:56] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:02:56,413 - INFO - 127.0.0.1 - - [15/Mar/2025 13:02:56] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:02:56,418 - INFO - 127.0.0.1 - - [15/Mar/2025 13:02:56] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:01,424 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:01] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:01,428 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:01] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:01,434 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:01] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:01,438 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:01] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:03,065 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:03] "POST /start_token HTTP/1.1" 200 -
+2025-03-15 13:03:06,416 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:06] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:06,420 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:06] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:06,423 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:06] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:06,426 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:06] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:11,417 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:11] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:11,423 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:11] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:11,427 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:11] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:11,435 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:11] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:16,427 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:16] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:16,432 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:16] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:16,436 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:16] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:16,441 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:16] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:21,427 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:21] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:21,429 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:21] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:21,434 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:21] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:21,438 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:21] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:26,415 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:26] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:26,419 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:26] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:26,423 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:26] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:26,426 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:26] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:31,426 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:31] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:31,429 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:31] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:31,433 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:31] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:31,439 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:31] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:36,416 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:36] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:36,419 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:36] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:36,423 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:36] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:36,428 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:36] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:41,421 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:41] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:41,425 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:41] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:41,429 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:41] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:41,435 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:41] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:46,420 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:46] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:46,425 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:46] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:46,430 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:46] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:46,437 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:46] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:51,422 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:51] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:51,426 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:51] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:51,431 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:51] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:51,436 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:51] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:56,416 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:56] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:56,419 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:56] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:56,425 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:56] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:03:56,430 - INFO - 127.0.0.1 - - [15/Mar/2025 13:03:56] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:01,414 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:01] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:01,419 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:01] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:01,425 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:01] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:01,429 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:01] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:06,419 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:06] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:06,423 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:06] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:06,426 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:06] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:06,432 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:06] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:10,847 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:10] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:10,849 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:10] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:10,855 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:10] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:10,859 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:10] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:16,404 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:16] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:16,409 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:16] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:16,414 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:16] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:16,419 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:16] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:21,424 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:21] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:21,427 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:21] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:21,432 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:21] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:21,437 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:21] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:22,191 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:22] "POST /start_token HTTP/1.1" 200 -
+2025-03-15 13:04:25,846 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:25] "GET /token_status?exchange_id=OKX&symbol=SOL/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:25,850 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:25] "GET /token_status?exchange_id=OKX&symbol=LTC/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:25,854 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:25] "GET /token_status?exchange_id=OKX&symbol=XRP/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:25,861 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:25] "GET /token_status?exchange_id=OKX&symbol=ADA/USDT HTTP/1.1" 200 -
+2025-03-15 13:04:27,914 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:27] "GET / HTTP/1.1" 200 -
+2025-03-15 13:04:27,997 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:27] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2025-03-15 13:04:30,789 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:30] "GET /stream/test HTTP/1.1" 200 -
+2025-03-15 13:04:42,154 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:42] "POST /start_exchange HTTP/1.1" 200 -
+2025-03-15 13:04:46,536 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:46] "[32mGET /mercado HTTP/1.1[0m" 308 -
+2025-03-15 13:04:46,549 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:46] "[32mGET /mercado/ HTTP/1.1[0m" 302 -
+2025-03-15 13:04:46,615 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:46] "GET /mercado/mercado HTTP/1.1" 200 -
+2025-03-15 13:04:46,680 - INFO - 127.0.0.1 - - [15/Mar/2025 13:04:46] "[33mGET /mercado/static/styles.css HTTP/1.1[0m" 404 -
+2025-03-15 13:05:17,563 - ERROR - Error al inicializar el exchange OKX: 
+2025-03-15 13:05:33,996 - INFO - 127.0.0.1 - - [15/Mar/2025 13:05:33] "GET / HTTP/1.1" 200 -
+2025-03-15 13:05:34,081 - INFO - 127.0.0.1 - - [15/Mar/2025 13:05:34] "[33mGET /static/styles.css HTTP/1.1[0m" 404 -
+2025-03-15 13:05:34,970 - INFO - 127.0.0.1 - - [15/Mar/2025 13:05:34] "GET /stream/test HTTP/1.1" 200 -
+2025-03-15 13:05:37,431 - INFO - 127.0.0.1 - - [15/Mar/2025 13:05:37] "POST /start_exchange HTTP/1.1" 200 -
+2025-03-15 13:05:38,499 - INFO - 127.0.0.1 - - [15/Mar/2025 13:05:38] "POST /start_exchange HTTP/1.1" 200 -
+2025-03-15 13:05:39,312 - ERROR - Error específico al obtener balance para B2: 
+2025-03-15 13:05:39,314 - INFO - 127.0.0.1 - - [15/Mar/2025 13:05:39] "GET /mercado/api/account-balance/B2 HTTP/1.1" 200 -
+2025-03-15 13:05:47,590 - ERROR - Error al inicializar el exchange B2: 
+2025-03-15 13:06:17,601 - ERROR - Error al cargar mercados para OKX: 
+2025-03-15 13:06:19,283 - ERROR - Error al cargar mercados para OKX: 
+2025-03-15 13:06:19,284 - ERROR - Error al cargar mercados para OKX: 
+2025-03-15 13:06:47,616 - ERROR - Error al cargar mercados para B2: 
+2025-03-15 13:06:47,618 - INFO - 127.0.0.1 - - [15/Mar/2025 13:06:47] "GET /mercado/api/available-tokens HTTP/1.1" 200 -
+2025-03-15 13:06:49,296 - ERROR - Error al cargar mercados para B2: 
+2025-03-15 13:06:49,296 - ERROR - Error al cargar mercados para B2: 
+2025-03-15 13:06:49,298 - INFO - 127.0.0.1 - - [15/Mar/2025 13:06:49] "GET /mercado/api/available-tokens HTTP/1.1" 200 -
+2025-03-15 13:06:49,300 - INFO - 127.0.0.1 - - [15/Mar/2025 13:06:49] "GET /mercado/api/available-tokens HTTP/1.1" 200 -
+2025-03-15 13:08:30,472 - ERROR - Usuario test: El exchange OKX aún parece tener una sesión activa. Revisión adicional recomendada.
+2025-03-15 13:08:30,473 - ERROR - Usuario test: El exchange B2 aún parece tener una sesión activa. Revisión adicional recomendada.
+2025-03-15 13:08:30,612 - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<memory_optimizer() done, defined at C:\Users\LPCRAN\OneDrive\Escritorio\Backup server\BOTXI\test\main\bot.py:102> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[_chain_future.<locals>._call_set_state() at C:\Users\LPCRAN\AppData\Local\Programs\Python\Python310\lib\asyncio\futures.py:391]>
+2025-03-15 13:08:30,616 - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<market_memory_optimizer() running at C:\Users\LPCRAN\OneDrive\Escritorio\Backup server\BOTXI\test\main\mercado.py:107> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[_chain_future.<locals>._call_set_state() at C:\Users\LPCRAN\AppData\Local\Programs\Python\Python310\lib\asyncio\futures.py:391]>
+2025-03-15 13:08:37,422 - INFO - Usuario user_id: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,423 - INFO - Usuario test: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,424 - INFO - Usuario mpart14: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,424 - INFO - Usuario mpart00: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,425 - INFO - Usuario mpart20: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,426 - INFO - Usuario Droopy27: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,427 - INFO - Usuario Kotor86: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,428 - INFO - Usuario mpart202: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,429 - INFO - Usuario Jardian: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,430 - INFO - Usuario bibitoons: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,430 - INFO - Usuario Tahiel: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,431 - INFO - Usuario Amtm11: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,432 - INFO - Usuario prueba: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,433 - INFO - Usuario GLTrade: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,435 - INFO - Usuario Charles96: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,435 - INFO - Usuario danielagiusti: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,436 - INFO - Usuario camilolwi: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,437 - INFO - Usuario Natbot: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,438 - INFO - Usuario david.alej.drt@gmail: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,439 - INFO - Usuario averna: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,463 - INFO - Usuario user_id: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,464 - INFO - Usuario test: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,465 - INFO - Usuario mpart14: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,466 - INFO - Usuario mpart00: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,467 - INFO - Usuario mpart20: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,468 - INFO - Usuario Droopy27: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,469 - INFO - Usuario Kotor86: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,469 - INFO - Usuario mpart202: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,470 - INFO - Usuario Jardian: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,471 - INFO - Usuario bibitoons: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,472 - INFO - Usuario Tahiel: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,473 - INFO - Usuario Amtm11: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,474 - INFO - Usuario prueba: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,474 - INFO - Usuario GLTrade: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,475 - INFO - Usuario Charles96: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,476 - INFO - Usuario danielagiusti: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,477 - INFO - Usuario camilolwi: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,477 - INFO - Usuario Natbot: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,478 - INFO - Usuario david.alej.drt@gmail: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,479 - INFO - Usuario averna: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:08:37,480 - INFO - Optimizador de memoria de bot iniciado correctamente
+2025-03-15 13:08:37,480 - INFO - Optimizador de memoria de mercado iniciado
+2025-03-15 13:08:37,482 - INFO - Servidor web iniciado en el puerto 5003
+2025-03-15 13:08:37,483 - INFO - Accede a la aplicación principal en http://localhost:5003
+2025-03-15 13:08:37,484 - INFO - Accede a mercado en http://localhost:5003/mercado
+2025-03-15 13:08:37,541 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.103.164:5003
+2025-03-15 13:08:37,542 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-15 13:08:45,884 - INFO - Usuario test: Configuración limpiada. Se conservaron 4 tokens únicos.
+2025-03-15 13:08:45,885 - INFO - Usuario 'test': No se requirió migración de símbolos.
+2025-03-15 13:08:45,886 - INFO - Usuario test: Limpiando configuración de tokens...
+2025-03-15 13:08:45,887 - INFO - Usuario test: Limpieza completada. Se mantuvieron 4 tokens únicos.
+2025-03-15 13:08:45,887 - INFO - Estructuras inicializadas para el usuario test
+2025-03-15 13:08:45,892 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 13:08:45,894 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 13:08:45,895 - INFO - Configuración cargada y depurada exitosamente para el usuario test
+2025-03-15 13:08:45,896 - INFO - Usuario test: Limpiando configuración de tokens...
+2025-03-15 13:08:45,896 - INFO - Usuario test: Limpieza completada. Se mantuvieron 4 tokens únicos.
+2025-03-15 13:08:45,897 - INFO - Estructuras inicializadas para el usuario test
+2025-03-15 13:08:45,900 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 13:08:45,901 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:08:45,902 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:08:45,904 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:08:45,961 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:08:45,962 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:08:45,963 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:08:45,965 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:08:45,967 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:08:45,968 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:08:45,969 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:08:45,969 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:08:45,970 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:08:45,971 - INFO - 127.0.0.1 - - [15/Mar/2025 13:08:45] "GET / HTTP/1.1" 200 -
+2025-03-15 13:08:46,208 - INFO - 127.0.0.1 - - [15/Mar/2025 13:08:46] "GET /static/styles.css HTTP/1.1" 200 -
+2025-03-15 13:08:48,915 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:08:48,916 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:08:48,918 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:08:48,919 - INFO - 127.0.0.1 - - [15/Mar/2025 13:08:48] "GET /stream/test HTTP/1.1" 200 -
+2025-03-15 13:08:57,183 - INFO - 127.0.0.1 - - [15/Mar/2025 13:08:57] "POST /start_exchange HTTP/1.1" 200 -
+2025-03-15 13:08:57,184 - INFO - Usuario test: Tarea para OKX iniciada.
+2025-03-15 13:08:57,186 - INFO - Usuario test: Exchange OKX iniciado
+2025-03-15 13:08:57,269 - ERROR - Usuario test: Error al inicializar el exchange OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86. Reintento 1 de 3
+2025-03-15 13:09:00,828 - INFO - 127.0.0.1 - - [15/Mar/2025 13:09:00] "[32mGET /mercado/ HTTP/1.1[0m" 302 -
+2025-03-15 13:09:00,898 - INFO - 127.0.0.1 - - [15/Mar/2025 13:09:00] "GET /mercado/mercado HTTP/1.1" 200 -
+2025-03-15 13:09:00,954 - INFO - 127.0.0.1 - - [15/Mar/2025 13:09:00] "GET /mercado/static/styles.css HTTP/1.1" 200 -
+2025-03-15 13:09:01,521 - ERROR - Error al inicializar el exchange B2: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 13:09:01,696 - ERROR - Error al cargar mercados para OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 13:09:02,039 - ERROR - Error al cargar mercados para B2: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86
+2025-03-15 13:09:02,041 - INFO - 127.0.0.1 - - [15/Mar/2025 13:09:02] "GET /mercado/api/available-tokens HTTP/1.1" 200 -
+2025-03-15 13:09:02,340 - ERROR - Usuario test: Error al inicializar el exchange OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86. Reintento 2 de 3
+2025-03-15 13:09:03,923 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:09:03,926 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:09:03,927 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:09:07,403 - ERROR - Usuario test: Error al inicializar el exchange OKX: aiodns needs a SelectorEventLoop on Windows. See more: https://github.com/saghul/aiodns/issues/86. Reintento 3 de 3
+2025-03-15 13:09:12,406 - ERROR - Usuario test: No se pudo conectar el exchange OKX después de 3 intentos.
+2025-03-15 13:09:12,407 - INFO - Usuario test: Tareas para OKX finalizadas
+2025-03-15 13:09:18,938 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:09:18,939 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:09:18,940 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:09:33,954 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:09:33,955 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:09:33,956 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:09:48,969 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:09:48,971 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:09:48,972 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:10:03,982 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:10:03,983 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:10:03,984 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:10:28,222 - INFO - Cierre de la aplicación por el usuario
+2025-03-15 13:10:28,223 - INFO - Usuario test: Cerrando todas las órdenes de compra abiertas...
+2025-03-15 13:10:28,224 - INFO - Usuario test: Proceso de cierre de órdenes de compra abiertas completado
+2025-03-15 13:10:28,224 - INFO - Usuario test: Conexión cerrada correctamente para el exchange OKX
+2025-03-15 13:10:28,225 - INFO - Usuario test: Conexión cerrada correctamente para el exchange B2
+2025-03-15 13:10:28,225 - ERROR - Usuario test: El exchange OKX aún parece tener una sesión activa. Revisión adicional recomendada.
+2025-03-15 13:10:28,226 - ERROR - Usuario test: El exchange B2 aún parece tener una sesión activa. Revisión adicional recomendada.
+2025-03-15 13:10:28,226 - WARNING - Usuario test: Todas las sesiones de cliente han sido cerradas.
+2025-03-15 13:10:28,227 - INFO - Aplicación cerrada correctamente
+2025-03-15 13:10:28,358 - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-1' coro=<memory_optimizer() running at C:\Users\LPCRAN\OneDrive\Escritorio\Backup server\BOTXI\test\main\bot.py:112> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[_chain_future.<locals>._call_set_state() at C:\Users\LPCRAN\AppData\Local\Programs\Python\Python310\lib\asyncio\futures.py:391]>
+2025-03-15 13:10:28,360 - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<market_memory_optimizer() running at C:\Users\LPCRAN\OneDrive\Escritorio\Backup server\BOTXI\test\main\mercado.py:107> wait_for=<Future pending cb=[Task.task_wakeup()]> cb=[_chain_future.<locals>._call_set_state() at C:\Users\LPCRAN\AppData\Local\Programs\Python\Python310\lib\asyncio\futures.py:391]>
+2025-03-15 13:10:29,709 - INFO - Configurado WindowsSelectorEventLoopPolicy para compatibilidad en Windows
+2025-03-15 13:10:33,391 - INFO - Usuario user_id: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,392 - INFO - Usuario test: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,393 - INFO - Usuario mpart14: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,394 - INFO - Usuario mpart00: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,394 - INFO - Usuario mpart20: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,395 - INFO - Usuario Droopy27: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,397 - INFO - Usuario Kotor86: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,398 - INFO - Usuario mpart202: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,400 - INFO - Usuario Jardian: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,401 - INFO - Usuario bibitoons: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,403 - INFO - Usuario Tahiel: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,404 - INFO - Usuario Amtm11: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,404 - INFO - Usuario prueba: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,405 - INFO - Usuario GLTrade: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,406 - INFO - Usuario Charles96: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,408 - INFO - Usuario danielagiusti: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,410 - INFO - Usuario camilolwi: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,411 - INFO - Usuario Natbot: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,412 - INFO - Usuario david.alej.drt@gmail: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,412 - INFO - Usuario averna: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,435 - INFO - Usuario user_id: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,437 - INFO - Usuario test: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,437 - INFO - Usuario mpart14: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,438 - INFO - Usuario mpart00: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,439 - INFO - Usuario mpart20: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,440 - INFO - Usuario Droopy27: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,440 - INFO - Usuario Kotor86: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,441 - INFO - Usuario mpart202: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,442 - INFO - Usuario Jardian: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,443 - INFO - Usuario bibitoons: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,444 - INFO - Usuario Tahiel: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,444 - INFO - Usuario Amtm11: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,446 - INFO - Usuario prueba: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,447 - INFO - Usuario GLTrade: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,447 - INFO - Usuario Charles96: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,448 - INFO - Usuario danielagiusti: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,449 - INFO - Usuario camilolwi: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,450 - INFO - Usuario Natbot: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,451 - INFO - Usuario david.alej.drt@gmail: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,452 - INFO - Usuario averna: No se encontraron ganancias reinvertidas. Inicializando en 0.
+2025-03-15 13:10:33,452 - INFO - Optimizador de memoria de bot iniciado correctamente
+2025-03-15 13:10:33,453 - INFO - Optimizador de memoria de mercado iniciado
+2025-03-15 13:10:33,455 - INFO - Servidor web iniciado en el puerto 5003
+2025-03-15 13:10:33,455 - INFO - Accede a la aplicación principal en http://localhost:5003
+2025-03-15 13:10:33,456 - INFO - Accede a mercado en http://localhost:5003/mercado
+2025-03-15 13:10:33,489 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.103.164:5003
+2025-03-15 13:10:33,490 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-15 13:10:36,199 - INFO - Usuario test: Configuración limpiada. Se conservaron 4 tokens únicos.
+2025-03-15 13:10:36,199 - INFO - Usuario 'test': No se requirió migración de símbolos.
+2025-03-15 13:10:36,200 - INFO - Usuario test: Limpiando configuración de tokens...
+2025-03-15 13:10:36,200 - INFO - Usuario test: Limpieza completada. Se mantuvieron 4 tokens únicos.
+2025-03-15 13:10:36,201 - INFO - Estructuras inicializadas para el usuario test
+2025-03-15 13:10:36,203 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 13:10:36,205 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 13:10:36,205 - INFO - Configuración cargada y depurada exitosamente para el usuario test
+2025-03-15 13:10:36,206 - INFO - Usuario test: Limpiando configuración de tokens...
+2025-03-15 13:10:36,206 - INFO - Usuario test: Limpieza completada. Se mantuvieron 4 tokens únicos.
+2025-03-15 13:10:36,207 - INFO - Estructuras inicializadas para el usuario test
+2025-03-15 13:10:36,208 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 13:10:36,209 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:10:36,210 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:10:36,212 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:10:36,251 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:10:36,252 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:10:36,252 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:10:36,253 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:10:36,253 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:10:36,254 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:10:36,254 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:10:36,255 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:10:36,256 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:10:36,257 - INFO - 127.0.0.1 - - [15/Mar/2025 13:10:36] "GET / HTTP/1.1" 200 -
+2025-03-15 13:10:36,423 - INFO - 127.0.0.1 - - [15/Mar/2025 13:10:36] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-03-15 13:10:39,183 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:10:39,185 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:10:39,186 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:10:39,187 - INFO - 127.0.0.1 - - [15/Mar/2025 13:10:39] "GET /stream/test HTTP/1.1" 200 -
+2025-03-15 13:10:42,069 - INFO - Usuario test: Tarea para OKX iniciada.
+2025-03-15 13:10:42,070 - INFO - 127.0.0.1 - - [15/Mar/2025 13:10:42] "POST /start_exchange HTTP/1.1" 200 -
+2025-03-15 13:10:42,071 - INFO - Usuario test: Exchange OKX iniciado
+2025-03-15 13:10:44,514 - INFO - 127.0.0.1 - - [15/Mar/2025 13:10:44] "[32mGET /mercado/ HTTP/1.1[0m" 302 -
+2025-03-15 13:10:44,588 - INFO - 127.0.0.1 - - [15/Mar/2025 13:10:44] "GET /mercado/mercado HTTP/1.1" 200 -
+2025-03-15 13:10:44,651 - INFO - 127.0.0.1 - - [15/Mar/2025 13:10:44] "[36mGET /mercado/static/styles.css HTTP/1.1[0m" 304 -
+2025-03-15 13:10:45,884 - INFO - Usuario test: Exchange OKX conectado exitosamente.
+2025-03-15 13:10:46,425 - INFO - Usuario test: Cargadas 0 órdenes de venta pendientes para SOL/USDT en OKX
+2025-03-15 13:10:46,937 - INFO - Usuario test: Cargadas 0 órdenes de venta pendientes para LTC/USDT en OKX
+2025-03-15 13:10:47,571 - INFO - Usuario test: Cargadas 0 órdenes de venta pendientes para XRP/USDT en OKX
+2025-03-15 13:10:48,505 - INFO - Usuario test: Cargadas 0 órdenes de venta pendientes para ADA/USDT en OKX
+2025-03-15 13:10:48,506 - INFO - Usuario test: Símbolos configurados para OKX: ['SOL/USDT', 'LTC/USDT', 'XRP/USDT', 'ADA/USDT']
+2025-03-15 13:10:49,716 - INFO - Exchange B2 inicializado exitosamente para el usuario test
+2025-03-15 13:10:49,722 - INFO - Obtenidos 2474 tokens para OKX
+2025-03-15 13:10:49,725 - INFO - Obtenidos 1369 tokens para B2
+2025-03-15 13:10:49,743 - INFO - 127.0.0.1 - - [15/Mar/2025 13:10:49] "GET /mercado/api/available-tokens HTTP/1.1" 200 -
+2025-03-15 13:10:53,397 - ERROR - Error específico al obtener balance para B2: bitget {"code":"40018","msg":"Invalid IP","requestTime":1742055053294,"data":null}
+2025-03-15 13:10:53,397 - INFO - 127.0.0.1 - - [15/Mar/2025 13:10:53] "GET /mercado/api/account-balance/B2 HTTP/1.1" 200 -
+2025-03-15 13:10:54,196 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:10:54,198 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:10:54,199 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:10:56,370 - INFO - 127.0.0.1 - - [15/Mar/2025 13:10:56] "GET /mercado/api/account-balance/OKX HTTP/1.1" 200 -
+2025-03-15 13:11:09,206 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:11:09,207 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:11:09,208 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:11:12,558 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:11:12,559 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:11:12,561 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:11:12,563 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:11:12,565 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:11:12,566 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:11:12,567 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:11:12,569 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:11:12,571 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:11:12,573 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:11:12,574 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:11:12,576 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:11:12,578 - INFO - 127.0.0.1 - - [15/Mar/2025 13:11:12] "GET / HTTP/1.1" 200 -
+2025-03-15 13:11:12,648 - INFO - 127.0.0.1 - - [15/Mar/2025 13:11:12] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-03-15 13:11:13,414 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:11:13,447 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:11:13,448 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:11:13,450 - INFO - 127.0.0.1 - - [15/Mar/2025 13:11:13] "GET /stream/test HTTP/1.1" 200 -
+2025-03-15 13:11:24,213 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:11:24,214 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:11:24,215 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:11:28,467 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:11:28,469 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:11:28,470 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:11:39,220 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:11:39,221 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:11:39,222 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:11:43,485 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:11:43,487 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:11:43,489 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:11:54,240 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:11:54,241 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:11:54,242 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:11:58,494 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:11:58,496 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:11:58,497 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:12:13,507 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:12:13,509 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:12:13,511 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:12:28,514 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:12:28,516 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:12:28,517 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 13:12:43,535 - INFO - Usuario test: Cargadas 0 transacciones para OKX
+2025-03-15 13:12:43,536 - INFO - Usuario test: Cargadas 0 transacciones para B2
+2025-03-15 13:12:43,537 - INFO - Usuario test: Cargadas 0 transacciones para LB
+2025-03-15 14:26:24,249 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 14:26:24,285 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 14:26:24,315 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 14:26:24,315 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 14:26:24,316 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 14:26:24,316 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 14:45:57,820 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 14:45:57,834 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 14:45:57,865 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 14:45:57,914 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 14:45:57,915 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 14:45:57,916 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 16:37:04,458 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 16:37:04,463 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 16:37:04,472 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 16:37:04,481 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 16:37:04,481 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 16:37:04,482 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 16:42:04,465 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 16:42:04,535 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 16:42:04,537 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 16:42:04,544 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 16:42:04,545 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 16:42:04,545 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 16:47:04,471 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 16:47:04,569 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 16:47:04,570 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 16:47:04,614 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 16:47:04,616 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 16:47:04,617 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 16:52:04,478 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 16:52:04,622 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 16:52:04,624 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 16:52:04,670 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 16:52:04,671 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 16:52:04,672 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 16:57:04,489 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 16:57:04,681 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 16:57:04,682 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 16:57:04,727 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 16:57:04,728 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 16:57:04,729 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 17:02:04,489 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 17:02:04,729 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 17:02:04,730 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 17:02:04,737 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 17:02:04,738 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 17:02:04,739 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 17:07:04,498 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 17:07:04,740 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 17:07:04,763 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 17:07:04,775 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 17:07:04,778 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 17:07:04,783 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 17:12:04,522 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 17:12:04,806 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 17:12:04,807 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 17:12:04,815 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 17:12:04,816 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 17:12:04,816 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 17:17:04,519 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 17:17:04,821 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 17:17:04,822 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 17:17:04,866 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 17:17:04,867 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 17:17:04,868 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 17:36:10,848 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 17:36:10,887 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 17:36:10,902 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 17:36:10,915 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 17:36:10,916 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 17:36:10,918 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 17:41:10,892 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 17:41:10,925 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 17:41:10,927 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 17:41:10,972 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 17:41:10,974 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 17:41:10,975 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 19:08:29,033 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 19:08:29,231 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 19:08:29,358 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 19:08:29,589 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 19:08:29,600 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 19:08:29,604 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 19:24:48,686 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 19:24:48,701 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 19:24:48,702 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 19:24:48,796 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 19:24:48,810 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 19:24:48,815 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 19:29:48,701 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 19:29:48,828 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 19:29:48,830 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 19:29:48,875 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 19:29:48,876 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 19:29:48,877 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 19:34:48,726 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 19:34:48,900 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 19:34:48,901 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 19:34:48,908 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 19:34:48,909 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 19:34:48,911 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 19:39:48,729 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 19:39:48,932 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 19:39:48,933 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 19:39:48,978 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 19:39:48,979 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 19:39:48,980 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 20:35:39,926 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 20:35:40,109 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 20:35:40,159 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 20:35:40,215 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 20:35:40,217 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 20:35:40,218 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 20:40:39,971 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 20:40:40,225 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 20:40:40,226 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 20:40:40,271 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 20:40:40,272 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 20:40:40,273 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-15 21:05:16,757 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-15 21:05:16,764 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-15 21:05:16,765 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-15 21:05:16,938 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-15 21:05:16,976 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-15 21:05:17,016 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-16 09:21:59,500 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-16 09:21:59,886 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-16 09:21:59,892 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-16 09:22:00,106 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-16 09:22:00,113 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-16 09:22:00,115 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-16 09:26:59,510 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-16 09:27:00,125 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-16 09:27:00,126 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-16 09:27:00,174 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-16 09:27:00,179 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-16 09:27:00,180 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-16 09:31:59,520 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-16 09:32:00,178 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-16 09:32:00,181 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-16 09:32:00,225 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-16 09:32:00,228 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-16 09:32:00,229 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-16 09:36:59,528 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-16 09:37:00,250 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-16 09:37:00,256 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-16 09:37:00,262 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-16 09:37:00,264 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-16 09:37:00,265 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-16 13:18:58,130 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-16 13:18:58,132 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-16 13:18:58,139 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-16 13:18:58,164 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-16 13:18:58,212 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-16 13:18:58,223 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-17 07:53:13,641 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-17 07:53:13,894 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-17 07:53:13,895 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-17 07:53:13,914 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-17 07:53:13,915 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-17 07:53:13,917 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-17 09:29:41,832 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-17 09:29:41,841 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-17 09:29:41,841 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-17 09:29:42,203 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-17 09:29:42,204 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-17 09:29:42,204 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-17 09:34:41,839 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-17 09:34:42,220 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-17 09:34:42,220 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-17 09:34:42,228 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-17 09:34:42,229 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-17 09:34:42,229 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-17 09:39:41,836 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-17 09:39:42,244 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-17 09:39:42,246 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-17 09:39:42,253 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-17 09:39:42,254 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-17 09:39:42,254 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-17 13:43:20,927 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-17 13:43:20,931 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-17 13:43:20,932 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-17 13:43:20,942 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-17 13:43:20,943 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-17 13:43:20,944 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-18 06:53:24,529 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-18 06:53:24,535 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-18 06:53:24,539 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-18 06:53:24,842 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-18 06:53:24,885 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-18 06:53:24,904 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-18 06:58:24,546 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-18 06:58:24,939 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-18 06:58:24,940 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-18 06:58:24,950 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-18 06:58:24,951 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-18 06:58:24,952 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-18 07:03:24,563 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-18 07:03:24,961 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-18 07:03:24,962 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-18 07:03:24,970 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-18 07:03:24,975 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-18 07:03:24,975 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-18 07:08:24,579 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-18 07:08:24,987 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-18 07:08:24,988 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-18 07:08:25,003 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-18 07:08:25,004 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-18 07:08:25,004 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-18 07:13:24,587 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-18 07:13:25,024 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-18 07:13:25,025 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-18 07:13:25,031 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-18 07:13:25,032 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-18 07:13:25,033 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-18 07:18:24,604 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-18 07:18:25,048 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-18 07:18:25,049 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-18 07:18:25,056 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-18 07:18:25,057 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-18 07:18:25,058 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-18 07:23:24,615 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-18 07:23:25,067 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-18 07:23:25,068 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-18 07:23:25,079 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-18 07:23:25,079 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-18 07:23:25,081 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-18 07:28:24,613 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-18 07:28:25,106 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-18 07:28:25,107 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-18 07:28:25,114 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-18 07:28:25,115 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-18 07:28:25,116 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-18 07:33:24,617 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-18 07:33:25,132 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-18 07:33:25,133 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-18 07:33:25,146 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-18 07:33:25,147 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-18 07:33:25,147 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-18 07:38:24,629 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-18 07:38:25,146 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-18 07:38:25,146 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-18 07:38:25,159 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-18 07:38:25,160 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-18 07:38:25,160 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-18 07:43:24,643 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-18 07:43:25,174 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-18 07:43:25,175 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-18 07:43:25,182 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-18 07:43:25,183 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-18 07:43:25,184 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-18 07:48:24,664 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-18 07:48:25,197 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-18 07:48:25,197 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-18 07:48:25,205 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-18 07:48:25,206 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-18 07:48:25,207 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-18 07:53:24,672 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-18 07:53:25,220 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-18 07:53:25,220 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-18 07:53:25,231 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-18 07:53:25,231 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-18 07:53:25,232 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-18 09:01:10,625 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-18 09:01:10,632 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-18 09:01:10,637 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-18 09:01:10,646 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-18 09:01:10,646 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-18 09:01:10,648 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-18 09:06:10,676 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-18 09:06:10,691 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-18 09:06:10,692 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-18 09:06:10,702 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-18 09:06:10,703 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-18 09:06:10,704 - INFO - Datos del usuario test descargados a disco por inactividad
+2025-03-18 09:11:10,701 - INFO - Datos de mercado del usuario test descargados a disco por inactividad
+2025-03-18 09:11:10,705 - INFO - Configuración guardada exitosamente para el usuario test
+2025-03-18 09:11:10,706 - INFO - Datos a guardar en trading_data\test\reinvested_profits_test.json: {}
+2025-03-18 09:11:10,717 - INFO - Datos guardados en trading_data\test\reinvested_profits_test.json
+2025-03-18 09:11:10,719 - INFO - Verificado: el archivo trading_data\test\reinvested_profits_test.json existe
+2025-03-18 09:11:10,719 - INFO - Datos del usuario test descargados a disco por inactividad

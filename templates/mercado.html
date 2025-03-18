@@ -1,0 +1,2310 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>Mercado | BOTXI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            "50": "#f0faff",
+                            "100": "#e0f2fe",
+                            "200": "#bae6fd",
+                            "300": "#7dd3fc",
+                            "400": "#38bdf8",
+                            "500": "#0ea5e9",
+                            "600": "#0284c7",
+                            "700": "#0369a1",
+                            "800": "#075985",
+                            "900": "#0c4a6e",
+                            "950": "#082f49"
+                        },
+                        blueEye: {
+                            "50": "#f0f9ff",
+                            "100": "#e0f7ff",
+                            "200": "#c0e8ff",
+                            "300": "#99d5ff",
+                            "400": "#5aafff",
+                            "500": "#3b82f6",
+                            "600": "#1d4ed8",
+                            "700": "#1e40af",
+                            "800": "#1e3a8a",
+                            "900": "#172554"
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'ui-sans-serif', 'system-ui', '-apple-system',
+                                 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue',
+                                 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji',
+                                 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'ping-slow': 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
+                        'price-up': 'priceUp 1s ease-out',
+                        'price-down': 'priceDown 1s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        priceUp: {
+                            '0%': { backgroundColor: 'rgba(34, 197, 94, 0.1)' },
+                            '50%': { backgroundColor: 'rgba(34, 197, 94, 0.2)' },
+                            '100%': { backgroundColor: 'rgba(34, 197, 94, 0.1)' },
+                        },
+                        priceDown: {
+                            '0%': { backgroundColor: 'rgba(239, 68, 68, 0.1)' },
+                            '50%': { backgroundColor: 'rgba(239, 68, 68, 0.2)' },
+                            '100%': { backgroundColor: 'rgba(239, 68, 68, 0.1)' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .gradient-bg {
+            background: linear-gradient(-45deg, #7038ff, #00a3ff, #3b82f6, #5f8fff);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        .light-gradient-bg {
+            background: linear-gradient(-45deg, #e0f2fe, #93c5fd, #bfdbfe, #60a5fa);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        .blue-gradient-bg {
+            background: linear-gradient(-45deg, #1e3a8a, #1d4ed8, #3b82f6, #60a5fa);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        /* Temas */
+        .theme-dark {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --accent-color: #3b82f6;
+        }
+
+        .theme-light {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --accent-color: #3b82f6;
+        }
+
+        .theme-blue-eye {
+            --bg-primary: #15263a;
+            --bg-secondary: #1a365d;
+            --text-primary: #e0f2fe;
+            --text-secondary: #bae6fd;
+            --accent-color: #60a5fa;
+        }
+
+        /* Animaciones para cambios de precio */
+        .price-rise {
+            animation: priceUp 1s ease-out;
+        }
+
+        .price-fall {
+            animation: priceDown 1s ease-out;
+        }
+
+        /* Estilos para botón de configuración */
+        .config-button {
+            transition: all 0.3s ease;
+        }
+
+        .config-button:hover {
+            transform: rotate(90deg);
+        }
+
+        /* Ajustar el espacio inferior para el contenido principal */
+        body {
+            padding-bottom: 3.5rem; /* Ajusta este valor según la altura de tu pie de página */
+        }
+
+        /* Estilo para los tokens en el pie de página */
+        .footer-token {
+            transition: all 0.2s ease;
+        }
+
+        .footer-token:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Estilos responsivos para el modo pantalla completa */
+        @media (max-width: 640px) {
+            .fullscreen-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 768px) {
+            .fullscreen-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .fullscreen-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1025px) and (max-width: 1280px) {
+            .fullscreen-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1281px) and (max-width: 1536px) {
+            .fullscreen-container {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        @media (min-width: 1537px) {
+            .fullscreen-container {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        /* Animación para actualizar el saldo */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .refresh-spin {
+            animation: spin 1s linear;
+        }
+
+        /* Estilo para el panel expandible */
+        #balance-details-panel {
+            max-height: 0;
+            transition: max-height 0.3s ease-out;
+            overflow: hidden;
+        }
+
+        #balance-details-panel.expanded {
+            max-height: 300px; /* Ajusta este valor según sea necesario */
+        }
+
+        /* Ajustes para dispositivos móviles */
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #footer-tokens-container {
+                margin-top: 0.5rem;
+                margin-bottom: 0.5rem;
+                padding-left: 0.5rem;
+            }
+
+            .expand-button-container {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-top: 0.5rem;
+            }
+        }
+
+        /* Efecto de brilllo para el botón de actualizar */
+        #refresh-balance:active {
+            transform: scale(0.95);
+        }
+
+        #refresh-balance svg {
+            transition: transform 0.3s ease;
+        }
+
+        #refresh-balance:hover svg {
+            transform: rotate(180deg);
+        }
+
+        /* Estilos para la cruz de eliminar */
+        .delete-button {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background-color: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border-radius: 9999px;
+            width: 1.75rem;
+            height: 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.2s ease;
+            z-index: 10;
+        }
+
+        .price-card:hover .delete-button,
+        .price-card:focus-within .delete-button {
+            opacity: 1;
+        }
+
+        .delete-button:hover {
+            background-color: rgba(239, 68, 68, 0.4);
+            transform: scale(1.1);
+        }
+
+        /* Estilos para el top 10 de criptomonedas */
+        .top-crypto-item {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .top-crypto-item:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;  /* Chrome, Safari and Opera */
+        }
+
+                /* Estilos para tarjetas más compactas */
+        .price-card {
+            transition: all 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Estilos para el modal de detalles */
+        #token-details-modal {
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Ajustar la grilla para mostrar más tarjetas */
+        @media (min-width: 640px) {
+            #price-cards-container {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 768px) {
+            #price-cards-container {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1024px) {
+            #price-cards-container {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1280px) {
+            #price-cards-container {
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+            }
+        }
+
+        @media (min-width: 1536px) {
+            #price-cards-container {
+                grid-template-columns: repeat(6, minmax(0, 1fr));
+            }
+        }
+
+                /* Ajustes para el panel expandible */
+        #balance-details-panel {
+            max-height: 0;
+            opacity: 0;
+        }
+
+        #balance-details-panel.expanded {
+            max-height: 300px;
+            opacity: 1;
+        }
+
+        /* Animación para el botón de refresh */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .refresh-spin svg {
+            animation: spin 1s linear;
+        }
+
+        /* Estilos para filas alternantes en la tabla */
+        #balance-table-body-footer tr:nth-child(odd) {
+            background-color: rgba(30, 41, 59, 0.3);
+        }
+
+        #balance-table-body-footer tr:nth-child(even) {
+            background-color: rgba(30, 41, 59, 0.1);
+        }
+
+        #balance-table-body-footer tr:hover {
+            background-color: rgba(51, 65, 85, 0.4);
+        }
+
+        /* Asegurar que el saldo total siempre sea visible */
+        #total-balance-footer {
+            white-space: nowrap;
+        }
+
+        /* Ajustes para dispositivos móviles */
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #footer-tokens-container {
+                margin-top: 0.5rem;
+                margin-bottom: 0.5rem;
+                padding-left: 0.5rem;
+            }
+
+            .expand-button-container {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-top: 0.5rem;
+            }
+
+                /* Estilos para el modo pantalla completa */
+        .fullscreen-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 1rem;
+            overflow-y: auto;
+            z-index: 40;
+            background-color: var(--bg-primary, #0f172a);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* Ajustes para el contenedor en pantalla completa */
+        .fullscreen-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+            align-content: start;
+        }
+
+        /* Animación para la transición */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Ajusta el botón de salir para diferentes temas */
+        .theme-light #exit-fullscreen-button {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .theme-light #exit-fullscreen-button:hover {
+            background-color: rgba(239, 68, 68, 0.2);
+        }
+
+        .theme-blue-eye #exit-fullscreen-button {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+
+    </style>
+</head>
+
+<body class="bg-slate-900 text-gray-100 font-sans transition-colors duration-300" id="app-body">
+        <!-- Barra de navegación con selección de idioma y tema -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800 shadow-md mb-6">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="text-2xl font-bold bg-clip-text text-transparent gradient-bg">BOTXI</div>
+                    <span class="bg-blue-600 text-xs px-2 py-1 rounded-full animate-pulse-slow">Beta</span>
+                </div>
+
+                <!-- Menú desplegable -->
+                <div class="relative" id="main-menu-selector">
+                    <button class="flex items-center space-x-1 text-sm bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 transition-colors" id="main-menu-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="i18n" data-key="menu">Menú</span>
+                    </button>
+                    <div class="absolute right-0 mt-2 bg-slate-800 rounded-lg shadow-lg p-2 hidden w-48 z-10" id="main-menu-dropdown">
+                        <!-- Selector de idioma -->
+                        <div class="mb-1 block w-full">
+                            <button class="flex items-center justify-between w-full text-sm hover:bg-slate-700 rounded-lg px-3 py-2 transition-colors" id="language-submenu-button">
+                                <div class="flex items-center">
+                                    <span class="language-text">🇪🇸 Español</span>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                            <div class="hidden ml-2 mt-1 bg-slate-700 rounded-lg p-1" id="language-submenu">
+                                <button data-lang="es" class="language-option block w-full text-left px-3 py-2 rounded hover:bg-slate-600 text-sm">🇪🇸 Español</button>
+                                <button data-lang="en" class="language-option block w-full text-left px-3 py-2 rounded hover:bg-slate-600 text-sm">🇺🇸 English</button>
+                                <button data-lang="pt" class="language-option block w-full text-left px-3 py-2 rounded hover:bg-slate-600 text-sm">🇧🇷 Português</button>
+                            </div>
+                        </div>
+
+                        <!-- Selector de tema -->
+                        <div class="mb-1 block w-full">
+                            <button class="flex items-center justify-between w-full text-sm hover:bg-slate-700 rounded-lg px-3 py-2 transition-colors" id="theme-submenu-button">
+                                <div class="flex items-center">
+                                    <span class="theme-text">🌑 Oscuro</span>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                            <div class="hidden ml-2 mt-1 bg-slate-700 rounded-lg p-1" id="theme-submenu">
+                                <button data-theme="dark" class="theme-option block w-full text-left px-3 py-2 rounded hover:bg-slate-600 text-sm">🌑 <span class="theme-name">Oscuro</span></button>
+                                <button data-theme="light" class="theme-option block w-full text-left px-3 py-2 rounded hover:bg-slate-600 text-sm">☀️ <span class="theme-name">Claro</span></button>
+                                <button data-theme="blue-eye" class="theme-option block w-full text-left px-3 py-2 rounded hover:bg-slate-600 text-sm">👁️ <span class="theme-name">Azul</span></button>
+                            </div>
+                        </div>
+
+                        <!-- Pantalla completa -->
+                        <a href="#" id="fullscreen-button"
+                           class="flex items-center space-x-1 text-sm hover:bg-slate-700 rounded-lg px-3 py-2 transition-colors w-full text-left mb-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 01-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="i18n" data-key="fullscreen">Pantalla Completa</span>
+                        </a>
+
+                        <div class="border-t border-slate-700 my-1 pt-1">
+                            <!-- Tutorial -->
+                            <a href="https://chatgpt.com/g/g-67701000b5e88191afa7fbef8a1789fa-botxi-help"
+                               target="_blank"
+                               class="flex items-center space-x-1 text-sm hover:bg-slate-700 rounded-lg px-3 py-2 transition-colors w-full text-left mb-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="i18n" data-key="tutorial">Tutorial</span>
+                            </a>
+
+                            <!-- Volver al inicio -->
+                            <a href="/"
+                               class="flex items-center space-x-1 text-sm hover:bg-slate-700 rounded-lg px-3 py-2 transition-colors w-full text-left mb-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                                </svg>
+                                <span class="i18n" data-key="backToDashboard">Volver al inicio</span>
+                            </a>
+
+                            <!-- Cambiar contraseña -->
+                            <a href="/change_password"
+                               class="flex items-center space-x-1 text-sm hover:bg-slate-700 rounded-lg px-3 py-2 transition-colors w-full text-left mb-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="i18n" data-key="changePassword">Cambiar contraseña</span>
+                            </a>
+
+                            <!-- Cerrar Sesión -->
+                            <a href="/login"
+                               class="flex items-center space-x-1 text-sm hover:bg-red-800/60 rounded-lg px-3 py-2 transition-colors w-full text-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="i18n" data-key="logout">Cerrar Sesión</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-4 max-w-7xl">
+        <!-- Menú de selección de exchange y configuración -->
+        <div class="mb-8">
+            <div class="flex flex-wrap justify-center items-center gap-3 mb-4">
+                {% for exchange_id, exchange_data in exchanges_config.items() %}
+                <button onclick="selectExchange('{{ exchange_id }}')"
+                        id="exchange-btn-{{ exchange_id }}"
+                        class="exchange-btn px-4 py-2 rounded-lg text-sm font-medium
+                              {% if loop.first %}bg-blue-600 text-white{% else %}bg-slate-700 text-gray-300{% endif %}
+                              transition-colors hover:bg-blue-700 hover:text-white">
+                    {{ exchange_data.get('name', 'Unknown') | upper }}
+                </button>
+                {% endfor %}
+
+                <!-- Botón para configurar tokens integrado -->
+                <button onclick="openTokenConfig()"
+                        class="bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700
+                              text-white font-bold px-4 py-2 rounded-lg
+                              transition-all duration-300 ease-in-out transform hover:scale-105
+                              flex items-center space-x-2 shadow-lg shadow-blue-600/20 ml-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="i18n" data-key="configureTokens">Configurar Tokens</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Top 10 criptomonedas populares -->
+        <div class="mb-6">
+            <h3 class="text-lg font-bold mb-3 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <span class="i18n" data-key="topCryptos">Top 10 Criptomonedas</span>
+            </h3>
+            <div class="overflow-x-auto">
+                <div id="top-cryptos-container" class="flex space-x-2 pb-2 scrollbar-hide">
+                    <!-- Contenido generado dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje cuando no hay tokens configurados -->
+        <div id="no-tokens-message" class="hidden text-center py-12">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-gray-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <h3 class="text-xl font-semibold text-gray-400 mb-2 i18n" data-key="noTokensTitle">No hay tokens configurados</h3>
+            <p class="text-gray-500 i18n" data-key="noTokensDescription">Configura algunos tokens para empezar a monitorear los precios.</p>
+        </div>
+
+        <!-- Contenedor de tarjetas de precios -->
+        <div id="price-cards-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            <!-- Las tarjetas se generarán dinámicamente con JavaScript -->
+        </div>
+
+        <!-- Modal de configuración de tokens -->
+        <div id="token-config-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+            <div class="bg-slate-800 rounded-xl shadow-xl p-6 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold i18n" data-key="tokenConfigTitle">Configurar Tokens para Monitorear</h3>
+                    <button onclick="closeTokenConfig()" class="text-gray-400 hover:text-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <p class="text-gray-400 mb-4 i18n" data-key="tokenConfigDescription">
+                    Selecciona hasta 20 tokens para monitorear sus precios en tiempo real.
+                </p>
+
+                <div class="mb-4">
+                    <div class="relative">
+                        <input type="text" id="token-search"
+                               placeholder="Buscar tokens..."
+                               class="w-full pl-10 pr-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="exchange-tokens-container">
+                    <!-- El contenido se llenará dinámicamente según el exchange seleccionado -->
+                    <div class="mb-4">
+                        <h4 class="font-medium text-gray-300 mb-2 i18n" data-key="selectedTokens">Tokens seleccionados</h4>
+                        <div id="selected-tokens-list" class="space-y-2 max-h-40 overflow-y-auto p-2 bg-slate-700/50 rounded-lg">
+                            <!-- Lista de tokens seleccionados -->
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-medium text-gray-300 mb-2 i18n" data-key="availableTokens">Tokens disponibles</h4>
+                        <div id="available-tokens-list" class="space-y-2 max-h-60 overflow-y-auto p-2 bg-slate-700/50 rounded-lg">
+                            <!-- Lista de tokens disponibles -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end mt-6 space-x-3">
+                    <button onclick="closeTokenConfig()" class="px-4 py-2 border border-gray-600 rounded-lg text-gray-300 hover:bg-gray-700 transition-colors i18n" data-key="cancel">
+                        Cancelar
+                    </button>
+                    <button onclick="saveTokenConfig()" class="px-4 py-2 bg-blue-600 rounded-lg text-white hover:bg-blue-700 transition-colors i18n" data-key="save">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón flotante de ayuda -->
+    <div class="fixed bottom-4 right-4 flex flex-col space-y-2">
+        <a href="https://chatgpt.com/g/g-67701000b5e88191afa7fbef8a1789fa-botxi-help"
+           target="_blank"
+           class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-2 px-4 rounded-xl
+                  shadow-lg shadow-blue-600/20 transition-all duration-300 ease-in-out transform hover:scale-105
+                  flex items-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+            </svg>
+            <span class="i18n" data-key="tutorial">Tutorial</span>
+        </a>
+    </div>
+
+
+    <!-- Footer con panel de detalles mejorado -->
+    <footer class="fixed bottom-0 left-0 w-full bg-slate-800/90 backdrop-blur-md border-t border-slate-700 shadow-lg z-40">
+        <div class="container mx-auto px-4 py-2">
+            <div class="flex flex-wrap items-center justify-between">
+                <!-- Saldo Total -->
+                <div class="flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd" />
+                    </svg>
+                    <div>
+                        <p class="text-xs text-gray-400 i18n" data-key="totalBalance">Saldo Total</p>
+                        <p class="text-base font-bold text-white" id="total-balance-footer">
+                            <span id="balance-value">-- USDT</span>
+                            <button id="refresh-balance" class="ml-1 text-blue-400 hover:text-blue-300 transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                </svg>
+                            </button>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Tokens principales -->
+                <div class="flex items-center space-x-6 overflow-x-auto py-1 scrollbar-hide">
+                    <div id="footer-tokens-container" class="flex space-x-6">
+                        <!-- Los tokens se generarán dinámicamente -->
+                    </div>
+                </div>
+
+                <!-- Botones de expandir/contraer -->
+                <div class="flex space-x-2">
+                    <button id="expand-balance" class="bg-blue-600/20 text-blue-400 hover:bg-blue-600/30 px-3 py-1 rounded-lg text-sm transition-colors flex items-center">
+                        <span class="i18n" data-key="viewDetails">Ver Detalles</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+
+                    <button id="collapse-balance" class="hidden bg-slate-700/50 hover:bg-slate-700 text-gray-300 px-3 py-1 rounded-lg text-sm transition-colors inline-flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="i18n" data-key="hideDetails">Ocultar Detalles</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel expandible con detalles completos (mejorado) -->
+        <div id="balance-details-panel" class="transition-all duration-300 overflow-hidden bg-slate-800/90 border-t border-slate-700 shadow-lg">
+            <div class="container mx-auto px-4 py-3">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-slate-700">
+                        <thead class="bg-slate-800/50">
+                            <tr>
+                                <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-400 uppercase tracking-wider i18n" data-key="asset">
+                                    Token
+                                </th>
+                                <th scope="col" class="px-4 py-2 text-right text-xs font-medium text-gray-400 uppercase tracking-wider i18n" data-key="available">
+                                    Disponible
+                                </th>
+                                <th scope="col" class="px-4 py-2 text-right text-xs font-medium text-gray-400 uppercase tracking-wider i18n" data-key="inOrder">
+                                    En Órdenes
+                                </th>
+                                <th scope="col" class="px-4 py-2 text-right text-xs font-medium text-gray-400 uppercase tracking-wider i18n" data-key="totalValue">
+                                    Valor Total
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-700" id="balance-table-body-footer">
+                            <tr>
+                                <td colspan="4" class="px-4 py-2 text-center text-gray-400 i18n" data-key="loadingBalance">
+                                    Cargando saldos...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Agregar espacio en la parte inferior para evitar que el contenido se oculte bajo el pie de página -->
+    <div class="pb-16"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        // Traducciones
+        const translations = {
+            es: {
+                marketTitle: "Mercado en Tiempo Real",
+                marketDescription: "Monitorea los precios de tus criptomonedas favoritas en tiempo real con actualizaciones segundo a segundo.",
+                configureTokens: "Configurar Tokens",
+                noTokensTitle: "No hay tokens configurados",
+                noTokensDescription: "Configura algunos tokens para empezar a monitorear los precios.",
+                tokenConfigTitle: "Configurar Tokens para Monitorear",
+                tokenConfigDescription: "Selecciona hasta 20 tokens para monitorear sus precios en tiempo real.",
+                cancel: "Cancelar",
+                save: "Guardar",
+                tutorial: "Tutorial",
+                backToDashboard: "Volver al inicio",
+                priceChange24h: "Cambio 24h",
+                lastUpdated: "Última actualización",
+                volume24h: "Volumen 24h",
+                maxSelected: "Has seleccionado el número máximo de tokens (40).",
+                configSaved: "Configuración guardada correctamente.",
+                searchTokens: "Buscar tokens...",
+                selectedTokens: "Tokens seleccionados",
+                availableTokens: "Tokens disponibles",
+                exchange: "Exchange",
+                high24h: "Máximo 24h",
+                low24h: "Mínimo 24h",
+                addToFavorites: "Añadir a favoritos",
+                removeFromFavorites: "Quitar de favoritos",
+                topCryptos: "Top 10 Criptomonedas",
+                clickToAdd: "Clic para añadir",
+                accountBalance: "Saldo de Cuenta",
+                totalBalance: "Saldo Total",
+                asset: "Token",
+                available: "Disponible",
+                inOrder: "En Órdenes",
+                totalValue: "Valor Total",
+                loadingBalance: "Cargando saldos...",
+                viewDetails: "Ver Detalles",
+                hideDetails: "Ocultar Detalles",
+                menu: "Menú",
+                fullscreen: "Pantalla Completa",
+                exitFullscreen: "Salir",
+                changePassword: "Cambiar contraseña",
+                logout: "Cerrar Sesión",
+                marketView: "Mercado"
+            },
+            en: {
+                marketTitle: "Real-Time Market",
+                marketDescription: "Monitor your favorite cryptocurrencies in real-time with second-by-second updates.",
+                configureTokens: "Configure Tokens",
+                noTokensTitle: "No tokens configured",
+                noTokensDescription: "Configure some tokens to start monitoring prices.",
+                tokenConfigTitle: "Configure Tokens to Monitor",
+                tokenConfigDescription: "Select up to 20 tokens to monitor their prices in real-time.",
+                cancel: "Cancel",
+                save: "Save",
+                tutorial: "Tutorial",
+                backToDashboard: "Back to Dashboard",
+                priceChange24h: "24h Change",
+                lastUpdated: "Last updated",
+                volume24h: "24h Volume",
+                maxSelected: "You have selected the maximum number of tokens (40).",
+                configSaved: "Configuration saved successfully.",
+                searchTokens: "Search tokens...",
+                selectedTokens: "Selected tokens",
+                availableTokens: "Available tokens",
+                exchange: "Exchange",
+                high24h: "24h High",
+                low24h: "24h Low",
+                addToFavorites: "Add to favorites",
+                removeFromFavorites: "Remove from favorites",
+                topCryptos: "Top 10 Cryptocurrencies",
+                clickToAdd: "Click to add",
+                accountBalance: "Account Balance",
+                totalBalance: "Total Balance",
+                asset: "Token",
+                available: "Available",
+                inOrder: "In Orders",
+                totalValue: "Total Value",
+                loadingBalance: "Loading balances...",
+                viewDetails: "View Details",
+                hideDetails: "Hide Details",
+                menu: "Menu",
+                fullscreen: "Fullscreen",
+                exitFullscreen: "Exit",
+                changePassword: "Change Password",
+                logout: "Logout",
+                marketView: "Market"
+            },
+            pt: {
+                marketTitle: "Mercado em Tempo Real",
+                marketDescription: "Monitore suas criptomoedas favoritas em tempo real com atualizações segundo a segundo.",
+                configureTokens: "Configurar Tokens",
+                noTokensTitle: "Nenhum token configurado",
+                noTokensDescription: "Configure alguns tokens para começar a monitorar os preços.",
+                tokenConfigTitle: "Configurar Tokens para Monitorar",
+                tokenConfigDescription: "Selecione até 20 tokens para monitorar seus preços em tempo real.",
+                cancel: "Cancelar",
+                save: "Salvar",
+                tutorial: "Tutorial",
+                backToDashboard: "Voltar ao Dashboard",
+                priceChange24h: "Variação 24h",
+                lastUpdated: "Última atualização",
+                volume24h: "Volume 24h",
+                maxSelected: "Você selecionou o número máximo de tokens (40).",
+                configSaved: "Configuração salva com sucesso.",
+                searchTokens: "Buscar tokens...",
+                selectedTokens: "Tokens selecionados",
+                availableTokens: "Tokens disponíveis",
+                exchange: "Exchange",
+                high24h: "Máximo 24h",
+                low24h: "Mínimo 24h",
+                addToFavorites: "Adicionar aos favoritos",
+                removeFromFavorites: "Remover dos favoritos",
+                topCryptos: "Top 10 Criptomoedas",
+                clickToAdd: "Clique para adicionar",
+                accountBalance: "Saldo da Conta",
+                totalBalance: "Saldo Total",
+                asset: "Token",
+                available: "Disponível",
+                inOrder: "Em Ordens",
+                totalValue: "Valor Total",
+                loadingBalance: "Carregando saldos...",
+                viewDetails: "Ver Detalhes",
+                hideDetails: "Ocultar Detalhes",
+                menu: "Menu",
+                fullscreen: "Tela Cheia",
+                exitFullscreen: "Sair",
+                changePassword: "Alterar Senha",
+                logout: "Encerrar Sessão",
+                marketView: "Mercado"
+            }
+        };
+
+        // Nombres de temas por idioma
+        const themeNames = {
+            es: {
+                dark: "Oscuro",
+                light: "Claro",
+                "blue-eye": "Azul"
+            },
+            en: {
+                dark: "Dark",
+                light: "Light",
+                "blue-eye": "Blue Eye"
+            },
+            pt: {
+                dark: "Escuro",
+                light: "Claro",
+                "blue-eye": "Azul"
+            }
+        };
+
+        // Inicializar variables globales
+        let currentLang = localStorage.getItem('botxi-language') || 'es';
+        let currentTheme = localStorage.getItem('botxi-theme') || 'dark';
+        let currentExchange = '{{ exchanges_config.keys()|list|first }}';
+        let userId = '{{ user_id }}';
+        let selectedTokens = {};
+        let marketData = {};
+        let prevPrices = {};
+        let priceUpdateTimers = {};
+        let availableTokens = {};
+        let topCryptos = [];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTokenConfig();
+            setLanguage(currentLang);
+            setTheme(currentTheme);
+
+            // Configurar toastr
+            toastr.options = {
+                "closeButton": true,
+                "positionClass": "toast-top-right",
+                "progressBar": true,
+                "timeOut": "5000"
+            };
+
+            // Iniciar monitoreo de precios para el exchange actual
+            startPriceMonitoring(currentExchange);
+
+            // Configurar buscador de tokens
+            const searchInput = document.getElementById('token-search');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    filterTokens(this.value.toLowerCase());
+                });
+            }
+
+            // Configuración del panel expandible de saldo
+            setupBalancePanel();
+
+            // Obtener top 10 criptomonedas
+            fetchTopCryptos();
+
+            // Cargar el saldo inicial después de un breve retraso
+            setTimeout(loadAccountBalance, 1000);
+        });
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('botxi-language', lang);
+            document.documentElement.setAttribute('lang', lang);
+
+            // Actualizar todos los elementos traducibles
+            document.querySelectorAll('.i18n').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (key && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // Actualizar texto del NUEVO botón de idioma en el submenú
+            const langText = document.querySelector('.language-text');
+            if (langText) {
+                const langEmoji = lang === 'es' ? '🇪🇸' : lang === 'en' ? '🇺🇸' : '🇧🇷';
+                const langName = lang === 'es' ? 'Español' : lang === 'en' ? 'English' : 'Português';
+                langText.textContent = `${langEmoji} ${langName}`;
+            }
+
+            // Actualizar nombres de temas en el menú
+            document.querySelectorAll('.theme-name').forEach(el => {
+                const themeId = el.closest('.theme-option').getAttribute('data-theme');
+                el.textContent = themeNames[lang][themeId];
+            });
+
+            // Actualizar texto del botón de tema en el submenú
+            const themeText = document.querySelector('.theme-text');
+            if (themeText) {
+                const themeEmoji = currentTheme === 'dark' ? '🌑' : currentTheme === 'light' ? '☀️' : '👁️';
+                const themeName = themeNames[lang][currentTheme];
+                themeText.textContent = `${themeEmoji} ${themeName}`;
+            }
+
+            // Actualizar placeholder del buscador de tokens
+            const searchInput = document.getElementById('token-search');
+            if (searchInput) {
+                searchInput.placeholder = translations[lang].searchTokens;
+            }
+
+            updatePriceCards();
+            updateTopCryptos();
+        }
+
+        // Actualizaciones para el tema claro - arreglar los colores
+        function setTheme(theme) {
+            currentTheme = theme;
+            localStorage.setItem('botxi-theme', theme);
+            const body = document.getElementById('app-body');
+            document.documentElement.className = theme;
+            if (theme === 'dark') {
+                body.className = 'bg-slate-900 text-gray-100 font-sans transition-colors duration-300';
+                document.querySelector('nav').className = 'sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800 shadow-md mb-6';
+                // Ajustar colores de tarjetas en modo oscuro
+                document.querySelectorAll('.price-card').forEach(card => {
+                    card.className = card.className.replace(/bg-\w+-\d+\/\d+/, 'bg-slate-800/60');
+                    card.className = card.className.replace(/border-\w+-\d+/, 'border-slate-700');
+                });
+                // Ajustar el pie de página
+                const footer = document.querySelector('footer');
+                if (footer) {
+                    footer.className = 'fixed bottom-0 left-0 w-full bg-slate-800/90 backdrop-blur-md border-t border-slate-700 shadow-lg z-40';
+                }
+            } else if (theme === 'light') {
+                body.className = 'bg-white text-slate-900 font-sans transition-colors duration-300';
+                document.querySelector('nav').className = 'sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-slate-300 shadow-md mb-6 text-slate-900';
+                // Ajustar colores de tarjetas en modo claro
+                document.querySelectorAll('.price-card').forEach(card => {
+                    card.className = card.className.replace(/bg-\w+-\d+\/\d+/, 'bg-gray-100/90');
+                    card.className = card.className.replace(/border-\w+-\d+/, 'border-gray-300');
+                    card.className = card.className.replace(/hover:border-\w+-\d+/, 'hover:border-blue-500');
+                    card.className = card.className.replace(/hover:shadow-\w+-\d+\/\d+/, 'hover:shadow-blue-300/20');
+                });
+                // Ajustar el pie de página
+                const footer = document.querySelector('footer');
+                if (footer) {
+                    footer.className = 'fixed bottom-0 left-0 w-full bg-gray-100/90 backdrop-blur-md border-t border-gray-300 shadow-lg z-40 text-slate-900';
+                }
+                // Ajustar colores de los textos dentro de las tarjetas
+                document.querySelectorAll('.price-card h3').forEach(h3 => {
+                    h3.className = h3.className.replace('text-white', 'text-slate-900');
+                });
+                document.querySelectorAll('.price-card p:not(.text-green-400):not(.text-red-400):not(.text-blue-400):not(.text-amber-400)').forEach(p => {
+                    if (p.classList.contains('text-gray-400')) {
+                        p.className = p.className.replace('text-gray-400', 'text-gray-600');
+                    }
+                });
+            } else if (theme === 'blue-eye') {
+                body.className = 'bg-blueEye-900 text-blueEye-100 font-sans transition-colors duration-300';
+                document.querySelector('nav').className = 'sticky top-0 z-50 backdrop-blur-md bg-blueEye-900/80 border-b border-blueEye-800 shadow-md mb-6';
+                // Ajustar colores de tarjetas en modo ojo azul
+                document.querySelectorAll('.price-card').forEach(card => {
+                    card.className = card.className.replace(/bg-\w+-\d+\/\d+/, 'bg-blueEye-800/60');
+                    card.className = card.className.replace(/border-\w+-\d+/, 'border-blueEye-700');
+                });
+                // Ajustar el pie de página
+                const footer = document.querySelector('footer');
+                if (footer) {
+                    footer.className = 'fixed bottom-0 left-0 w-full bg-blueEye-800/90 backdrop-blur-md border-t border-blueEye-700 shadow-lg z-40';
+                }
+            }
+
+            // Actualizar los modales abiertos si existen
+            const tokenDetailsModal = document.getElementById('token-details-modal');
+            if (tokenDetailsModal) {
+                const modalContent = tokenDetailsModal.querySelector('div');
+                if (modalContent) {
+                    if (theme === 'dark') {
+                        modalContent.className = modalContent.className.replace(/bg-\w+-\d+/, 'bg-slate-800');
+                        modalContent.className = modalContent.className.replace(/border-\w+-\d+/, 'border-slate-700');
+                    } else if (theme === 'light') {
+                        modalContent.className = modalContent.className.replace(/bg-\w+-\d+/, 'bg-white');
+                        modalContent.className = modalContent.className.replace(/border-\w+-\d+/, 'border-gray-300');
+                        // Ajustar colores de texto en el modal
+                        const modalTexts = modalContent.querySelectorAll('h3, p:not(.text-green-400):not(.text-red-400):not(.text-blue-400):not(.text-amber-400)');
+                        modalTexts.forEach(text => {
+                            if (text.classList.contains('text-white')) {
+                                text.className = text.className.replace('text-white', 'text-slate-900');
+                            }
+                            if (text.classList.contains('text-gray-400')) {
+                                text.className = text.className.replace('text-gray-400', 'text-gray-600');
+                            }
+                        });
+                    } else if (theme === 'blue-eye') {
+                        modalContent.className = modalContent.className.replace(/bg-\w+-\d+/, 'bg-blueEye-800');
+                        modalContent.className = modalContent.className.replace(/border-\w+-\d+/, 'border-blueEye-700');
+                    }
+                }
+            }
+
+            const themeButton = document.getElementById('theme-button');
+            const themeEmoji = theme === 'dark' ? '🌑' : theme === 'light' ? '☀️' : '👁️';
+            const themeName = themeNames[currentLang][theme];
+            themeButton.querySelector('.theme-text').textContent = `${themeEmoji} ${themeName}`;
+
+            // Llamar a actualizar tarjetas para reflejar los cambios de tema
+            updatePriceCards();
+        }
+
+        function selectExchange(exchangeId) {
+            if (currentExchange === exchangeId) return;
+            document.querySelectorAll('.exchange-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-slate-700', 'text-gray-300');
+            });
+            const selectedBtn = document.getElementById(`exchange-btn-${exchangeId}`);
+            if (selectedBtn) {
+                selectedBtn.classList.remove('bg-slate-700', 'text-gray-300');
+                selectedBtn.classList.add('bg-blue-600', 'text-white');
+            }
+            stopPriceMonitoring(currentExchange);
+            currentExchange = exchangeId;
+            startPriceMonitoring(exchangeId);
+            updateTokenSelectionUI();
+            fetchTopCryptos();
+
+            // Actualizar también el balance de la cuenta al cambiar de exchange
+            loadAccountBalance();
+        }
+
+        function loadTokenConfig() {
+            try {
+                const savedConfig = localStorage.getItem('botxi-market-config');
+                if (savedConfig) {
+                    selectedTokens = JSON.parse(savedConfig);
+                } else {
+                    selectedTokens = {};
+                }
+                fetchAvailableTokens();
+            } catch (error) {
+                console.error('Error al cargar configuración:', error);
+                selectedTokens = {};
+            }
+        }
+
+        function saveTokenConfig() {
+            try {
+                localStorage.setItem('botxi-market-config', JSON.stringify(selectedTokens));
+                closeTokenConfig();
+                console.log("Configuración guardada:", selectedTokens);
+                toastr.success(translations[currentLang].configSaved);
+                stopPriceMonitoring(currentExchange);
+                startPriceMonitoring(currentExchange);
+            } catch (error) {
+                console.error('Error al guardar configuración:', error);
+                toastr.error('Error al guardar la configuración');
+            }
+        }
+
+
+        // Asegúrate de que la función formatNumber maneje correctamente los valores cero
+        function formatNumber(num) {
+            if (num === undefined || num === null) return '0.00000000';
+
+            // Si el número es cero, mostrar con formato adecuado
+            if (num === 0 || num === '0' || num === '0.0000000') {
+                return '0.00000000';
+            }
+
+            const number = parseFloat(num);
+            if (isNaN(number)) return '0.00000000';
+
+            if (number < 0.0001) {
+                return number.toFixed(8);
+            } else if (number < 0.01) {
+                return number.toFixed(6);
+            } else if (number < 1) {
+                return number.toFixed(4);
+            } else if (number < 10000) {
+                return number.toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            } else {
+                return number.toLocaleString(undefined, {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                });
+            }
+        }
+
+        // Función para configurar y mejorar el panel de saldo en el footer
+        function setupBalancePanel() {
+            const expandButton = document.getElementById('expand-balance');
+            const collapseButton = document.getElementById('collapse-balance');
+            const detailsPanel = document.getElementById('balance-details-panel');
+
+            if (expandButton && collapseButton && detailsPanel) {
+                // Inicialmente ocultar el botón de "Ocultar Detalles" y el panel
+                collapseButton.classList.add('hidden');
+                detailsPanel.classList.add('hidden');
+
+                expandButton.addEventListener('click', function() {
+                    // Mostrar el panel de detalles con transición
+                    detailsPanel.classList.remove('hidden');
+                    setTimeout(() => {
+                        detailsPanel.classList.add('expanded');
+                    }, 10);
+                    // Ocultar el botón de "Ver Detalles" y mostrar el de "Ocultar Detalles"
+                    expandButton.classList.add('hidden');
+                    collapseButton.classList.remove('hidden');
+                });
+
+                collapseButton.addEventListener('click', function() {
+                    // Revertir la animación del panel
+                    detailsPanel.classList.remove('expanded');
+                    setTimeout(() => {
+                        detailsPanel.classList.add('hidden');
+                        // Ocultar el botón de "Ocultar Detalles" y mostrar el de "Ver Detalles"
+                        collapseButton.classList.add('hidden');
+                        expandButton.classList.remove('hidden');
+                    }, 300);
+                });
+            }
+        }
+
+        function openTokenConfig() {
+            updateTokenSelectionUI();
+            const modal = document.getElementById('token-config-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                const searchInput = document.getElementById('token-search');
+                if (searchInput) searchInput.focus();
+            }, 100);
+        }
+
+        function closeTokenConfig() {
+            const modal = document.getElementById('token-config-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function updateTokenSelectionUI() {
+            const selectedList = document.getElementById('selected-tokens-list');
+            const availableList = document.getElementById('available-tokens-list');
+            if (!selectedList || !availableList) return;
+            selectedList.innerHTML = '';
+            availableList.innerHTML = '';
+            if (!availableTokens[currentExchange] || Object.keys(availableTokens[currentExchange]).length === 0) {
+                availableList.innerHTML = `
+                    <div class="text-center py-4 text-gray-400">
+                        <p>Cargando tokens disponibles...</p>
+                    </div>
+                `;
+                return;
+            }
+            const currentSelected = selectedTokens[currentExchange] || [];
+            if (currentSelected.length === 0) {
+                selectedList.innerHTML = `
+                    <div class="text-center py-4 text-gray-400">
+                        <p>No hay tokens seleccionados</p>
+                    </div>
+                `;
+            } else {
+                currentSelected.forEach(symbol => {
+                    const tokenInfo = availableTokens[currentExchange][symbol] || { name: symbol };
+                    selectedList.appendChild(createTokenListItem(symbol, tokenInfo.name, true));
+                });
+            }
+            const availableSymbols = Object.keys(availableTokens[currentExchange] || {}).filter(symbol =>
+                !currentSelected.includes(symbol)
+            );
+            if (availableSymbols.length === 0) {
+                availableList.innerHTML = `
+                    <div class="text-center py-4 text-gray-400">
+                        <p>No hay más tokens disponibles</p>
+                    </div>
+                `;
+            } else {
+                availableSymbols.forEach(symbol => {
+                    const tokenInfo = availableTokens[currentExchange][symbol];
+                    availableList.appendChild(createTokenListItem(symbol, tokenInfo.name, false));
+                });
+            }
+        }
+
+        function createTokenListItem(symbol, name, isSelected) {
+            const item = document.createElement('div');
+            item.className = 'flex items-center justify-between p-2 rounded-lg ' +
+                            (isSelected ? 'bg-blue-600/20' : 'bg-slate-700/50 hover:bg-slate-600/50') +
+                            ' transition-colors';
+            const nameContainer = document.createElement('div');
+            nameContainer.className = 'flex items-center';
+            const symbolSpan = document.createElement('span');
+            symbolSpan.className = 'font-medium text-white';
+            symbolSpan.textContent = symbol;
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'text-xs text-gray-400 ml-2';
+            nameSpan.textContent = name || symbol;
+            nameContainer.appendChild(symbolSpan);
+            nameContainer.appendChild(nameSpan);
+            const actionButton = document.createElement('button');
+            actionButton.className = 'px-2 py-1 text-xs rounded ' +
+                                    (isSelected ? 'bg-red-500/20 text-red-400 hover:bg-red-500/30' : 'bg-green-500/20 text-green-400 hover:bg-green-500/30') +
+                                    ' transition-colors';
+            actionButton.innerHTML = isSelected
+                ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                   </svg>`
+                : `<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                   </svg>`;
+            actionButton.title = isSelected
+                ? translations[currentLang].removeFromFavorites
+                : translations[currentLang].addToFavorites;
+            actionButton.onclick = function(e) {
+                e.stopPropagation();
+                toggleTokenSelection(symbol);
+            };
+            item.appendChild(nameContainer);
+            item.appendChild(actionButton);
+            if (!isSelected) {
+                item.onclick = function() {
+                    toggleTokenSelection(symbol);
+                };
+            }
+            return item;
+        }
+
+        // Modificar la configuración para permitir hasta 40 tokens
+        function toggleTokenSelection(symbol) {
+            if (!selectedTokens[currentExchange]) {
+                selectedTokens[currentExchange] = [];
+            }
+            const index = selectedTokens[currentExchange].indexOf(symbol);
+            if (index === -1) {
+                // Cambiado de 20 a 40 tokens máximos
+                if (selectedTokens[currentExchange].length >= 40) {
+                    toastr.warning(translations[currentLang].maxSelected.replace('20', '40'));
+                    return;
+                }
+                selectedTokens[currentExchange].push(symbol);
+
+                // Actualizar la UI sin refrescar la página
+                const container = document.getElementById('price-cards-container');
+                const noTokensMessage = document.getElementById('no-tokens-message');
+
+                if (noTokensMessage && container) {
+                    noTokensMessage.classList.add('hidden');
+                    container.classList.remove('hidden');
+                }
+
+                // Crear tarjeta para el nuevo token
+                createPriceCards(currentExchange, [symbol]);
+
+            } else {
+                selectedTokens[currentExchange].splice(index, 1);
+
+                // Eliminar la tarjeta si existe
+                const cardElement = document.getElementById(`price-card-${symbol.replace('/', '-')}`);
+                if (cardElement) {
+                    cardElement.classList.add('animate-fade-out');
+                    setTimeout(() => {
+                        cardElement.remove();
+
+                        // Verificar si no hay más tarjetas
+                        const container = document.getElementById('price-cards-container');
+                        const noTokensMessage = document.getElementById('no-tokens-message');
+
+                        if (container && container.children.length === 0 && noTokensMessage) {
+                            container.classList.add('hidden');
+                            noTokensMessage.classList.remove('hidden');
+                        }
+                    }, 300);
+                }
+            }
+            updateTokenSelectionUI();
+
+            // Guardar configuración después de actualizar
+            localStorage.setItem('botxi-market-config', JSON.stringify(selectedTokens));
+        }
+
+        function filterTokens(query) {
+            const selectedList = document.getElementById('selected-tokens-list');
+            const availableList = document.getElementById('available-tokens-list');
+            if (!selectedList || !availableList) return;
+            Array.from(selectedList.children).forEach(item => {
+                const symbol = item.querySelector('.font-medium')?.textContent;
+                if (symbol) {
+                    const name = item.querySelector('.text-xs')?.textContent || '';
+                    const match = symbol.toLowerCase().includes(query) || name.toLowerCase().includes(query);
+                    item.style.display = match ? 'flex' : 'none';
+                }
+            });
+            Array.from(availableList.children).forEach(item => {
+                const symbol = item.querySelector('.font-medium')?.textContent;
+                if (symbol) {
+                    const name = item.querySelector('.text-xs')?.textContent || '';
+                    const match = symbol.toLowerCase().includes(query) || name.toLowerCase().includes(query);
+                    item.style.display = match ? 'flex' : 'none';
+                }
+            });
+        }
+
+        function fetchAvailableTokens() {
+            fetch('/mercado/api/available-tokens')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error en la respuesta del servidor: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Tokens recibidos:", data);
+                    availableTokens = data;
+                    let totalTokens = 0;
+                    for (const exchange in data) {
+                        totalTokens += Object.keys(data[exchange] || {}).length;
+                    }
+                    if (totalTokens === 0) {
+                        toastr.warning('No se encontraron tokens disponibles en sus exchanges. Verifique la configuración de sus APIs.');
+                    }
+                    updateTokenSelectionUI();
+                })
+                .catch(error => {
+                    console.error('Error al obtener tokens disponibles:', error);
+                    toastr.error('Error al cargar tokens disponibles: ' + error.message);
+                });
+        }
+
+        // Función para iniciar monitoreo de precios mediante SSE
+        function startPriceMonitoring(exchangeId) {
+            const exchangeTokens = selectedTokens[exchangeId] || [];
+
+            const noTokensMessage = document.getElementById('no-tokens-message');
+            const priceCardsContainer = document.getElementById('price-cards-container');
+
+            if (exchangeTokens.length === 0) {
+                if (noTokensMessage) {
+                    noTokensMessage.classList.remove('hidden');
+                }
+
+                if (priceCardsContainer) {
+                    priceCardsContainer.classList.add('hidden');
+                }
+
+                if (!availableTokens[exchangeId] || Object.keys(availableTokens[exchangeId]).length === 0) {
+                    fetchAvailableTokens();
+                }
+
+                return;
+            } else {
+                if (noTokensMessage) {
+                    noTokensMessage.classList.add('hidden');
+                }
+
+                if (priceCardsContainer) {
+                    priceCardsContainer.classList.remove('hidden');
+                }
+            }
+
+            createPriceCards(exchangeId, exchangeTokens);
+
+            const tokens = exchangeTokens.join(',');
+            const tokensParam = encodeURIComponent(tokens);
+
+            const streamUrl = `/mercado/api/price-stream/${exchangeId}?tokens=${tokensParam}&user_id=${userId}`;
+
+            const priceUpdates = new EventSource(streamUrl);
+
+            priceUpdates.onmessage = function(event) {
+                try {
+                    const data = JSON.parse(event.data);
+                    updatePriceData(data);
+                } catch (e) {
+                    console.error("Error al parsear datos:", e);
+                }
+            };
+
+            priceUpdates.onerror = function(err) {
+                console.error("Error en EventSource:", err);
+                toastr.error('Error en la conexión de datos en tiempo real');
+                priceUpdates.close();
+
+                setTimeout(() => {
+                    startPriceMonitoring(exchangeId);
+                }, 5000);
+            };
+
+            priceUpdateTimers[exchangeId] = priceUpdates;
+        }
+
+        function stopPriceMonitoring(exchangeId) {
+            if (priceUpdateTimers[exchangeId]) {
+                priceUpdateTimers[exchangeId].close();
+                delete priceUpdateTimers[exchangeId];
+            }
+        }
+
+        function createPriceCards(exchangeId, symbols) {
+            const container = document.getElementById('price-cards-container');
+            if (!container) return;
+
+            // Si se pasa un array con todos los símbolos, limpiar el contenedor
+            if (symbols.length > 1) {
+                container.innerHTML = '';
+            }
+
+            symbols.forEach(symbol => {
+                // Verificar si la tarjeta ya existe
+                if (document.getElementById(`price-card-${symbol.replace('/', '-')}`)) {
+                    return; // Evitar duplicados
+                }
+
+                const card = document.createElement('div');
+                card.id = `price-card-${symbol.replace('/', '-')}`;
+                card.className = 'price-card bg-slate-800/60 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden border border-slate-700 hover:border-blue-500 transition-all duration-300 animate-fade-in hover:shadow-blue-900/20 hover:shadow-xl relative cursor-pointer';
+
+                // Hacemos que toda la tarjeta sea clickeable para mostrar los detalles
+                card.onclick = function() {
+                    showTokenDetails(symbol, exchangeId);
+                };
+
+                // Botón para eliminar tarjeta
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'delete-button';
+                deleteButton.title = translations[currentLang].removeFromFavorites;
+                deleteButton.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                    </svg>
+                `;
+                deleteButton.onclick = function(e) {
+                    e.stopPropagation();
+                    removeTokenCard(symbol);
+                };
+
+                // Crear tarjeta con diseño más compacto (sin los 4 cuadros inferiores)
+                card.innerHTML = `
+                    <div class="p-3">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="text-lg font-bold text-white">${symbol}</h3>
+                                <p class="text-xs text-gray-400">${exchangeId}</p>
+                            </div>
+                            <span class="px-2 py-1 rounded-full text-xs font-medium bg-gray-700 text-gray-300 flex items-center" id="price-change-${symbol.replace('/', '-')}">
+                                <span class="h-1.5 w-1.5 rounded-full bg-gray-400 mr-1"></span>
+                                --
+                            </span>
+                        </div>
+                        <div class="mt-2">
+                            <p class="text-2xl font-bold text-center" id="current-price-${symbol.replace('/', '-')}">--</p>
+                        </div>
+                    </div>
+                `;
+
+                card.appendChild(deleteButton);
+                container.appendChild(card);
+            });
+        }
+
+        // Función para mostrar los detalles del token en una ventana flotante
+        function showTokenDetails(symbol, exchangeId) {
+            // Remover cualquier modal de detalles existente
+            const existingModal = document.getElementById('token-details-modal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+
+            const safeSym = symbol.replace('/', '-');
+            const data = marketData[symbol] || {};
+
+            // Crear el modal
+            const modal = document.createElement('div');
+            modal.id = 'token-details-modal';
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center';
+
+            // Posicionar el modal cerca de la tarjeta
+            const card = document.getElementById(`price-card-${safeSym}`);
+            const rect = card ? card.getBoundingClientRect() : null;
+
+            // Contenido del modal
+            const modalContent = document.createElement('div');
+            modalContent.className = 'bg-slate-800 rounded-xl shadow-2xl p-4 max-w-md w-full mx-4 relative border border-slate-700 animate-fade-in';
+
+            // Botón para cerrar
+            modalContent.innerHTML = `
+                <button id="close-token-details" class="absolute top-3 right-3 text-gray-400 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+
+                <div class="mb-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-white">${symbol}</h3>
+                        <p class="text-sm text-gray-400">${exchangeId}</p>
+                    </div>
+                    <span class="px-3 py-1 rounded-full text-sm font-medium" id="modal-price-change-${safeSym}">
+                        ${data.change24h !== undefined ? ((data.change24h >= 0 ? '+' : '') + parseFloat(data.change24h).toFixed(2) + '%') : '--'}
+                    </span>
+                </div>
+
+                <div class="mb-4">
+                    <p class="text-3xl font-bold text-center" id="modal-current-price-${safeSym}">
+                        ${formatPrice(data.price) || '--'}
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <div class="bg-slate-700/50 rounded-lg p-3">
+                        <p class="text-gray-400 text-xs mb-1">${translations[currentLang].high24h}</p>
+                        <p class="font-medium text-green-400" id="modal-high-24h-${safeSym}">
+                            ${formatPrice(data.high24h) || '--'}
+                        </p>
+                    </div>
+                    <div class="bg-slate-700/50 rounded-lg p-3">
+                        <p class="text-gray-400 text-xs mb-1">${translations[currentLang].low24h}</p>
+                        <p class="font-medium text-red-400" id="modal-low-24h-${safeSym}">
+                            ${formatPrice(data.low24h) || '--'}
+                        </p>
+                    </div>
+                    <div class="bg-slate-700/50 rounded-lg p-3">
+                        <p class="text-gray-400 text-xs mb-1">${translations[currentLang].volume24h}</p>
+                        <p class="font-medium text-blue-400" id="modal-volume-24h-${safeSym}">
+                            ${formatVolume(data.volume24h) || '--'}
+                        </p>
+                    </div>
+                    <div class="bg-slate-700/50 rounded-lg p-3">
+                        <p class="text-gray-400 text-xs mb-1">${translations[currentLang].lastUpdated}</p>
+                        <p class="font-medium text-amber-400" id="modal-last-update-${safeSym}">
+                            ${new Date().toLocaleTimeString()}
+                        </p>
+                    </div>
+                </div>
+            `;
+
+            modal.appendChild(modalContent);
+            document.body.appendChild(modal);
+
+            // Actualizar color del indicador de cambio en el modal
+            if (data.change24h !== undefined) {
+                const change = parseFloat(data.change24h);
+                const isPositive = change >= 0;
+                const changeElement = document.getElementById(`modal-price-change-${safeSym}`);
+                if (changeElement) {
+                    changeElement.className = `px-3 py-1 rounded-full text-sm font-medium ${isPositive
+                        ? 'bg-green-900/30 text-green-400 border border-green-800/30'
+                        : 'bg-red-900/30 text-red-400 border border-red-800/30'}`;
+                }
+            }
+
+            // Agregar evento para cerrar al hacer clic en el botón o fuera del modal
+            const closeButton = document.getElementById('close-token-details');
+            closeButton.addEventListener('click', function() {
+                modal.remove();
+            });
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+        }
+
+        // Función para eliminar una tarjeta de token
+        function removeTokenCard(symbol) {
+            if (!selectedTokens[currentExchange]) {
+                return;
+            }
+
+            const index = selectedTokens[currentExchange].indexOf(symbol);
+            if (index !== -1) {
+                selectedTokens[currentExchange].splice(index, 1);
+
+                // Guardar la configuración actualizada
+                localStorage.setItem('botxi-market-config', JSON.stringify(selectedTokens));
+
+                const cardElement = document.getElementById(`price-card-${symbol.replace('/', '-')}`);
+                if (cardElement) {
+                    cardElement.classList.add('animate-fade-out');
+                    setTimeout(() => {
+                        cardElement.remove();
+
+                        // Verificar si no hay más tarjetas para mostrar mensaje
+                        const container = document.getElementById('price-cards-container');
+                        const noTokensMessage = document.getElementById('no-tokens-message');
+
+                        if (container && container.children.length === 0 && noTokensMessage) {
+                            container.classList.add('hidden');
+                            noTokensMessage.classList.remove('hidden');
+                        }
+
+                        // Actualizar el monitoreo sin este token
+                        stopPriceMonitoring(currentExchange);
+                        startPriceMonitoring(currentExchange);
+                    }, 300);
+                }
+            }
+        }
+
+        // Función para actualizar datos de precios
+        function updatePriceData(data) {
+            if (!data || Object.keys(data).length === 0) {
+                return;
+            }
+
+            Object.assign(marketData, data);
+            updatePriceCards();
+        }
+
+        // Actualizar la función updatePriceCards para que solo actualice la información visible
+        // y también actualice el modal si está abierto
+        function updatePriceCards() {
+            const exchangeTokens = selectedTokens[currentExchange] || [];
+            if (exchangeTokens.length === 0) {
+                return;
+            }
+
+            exchangeTokens.forEach(symbol => {
+                const safeSym = symbol.replace('/', '-');
+                const data = marketData[symbol];
+
+                if (!data) {
+                    return;
+                }
+
+                // Actualizar tarjeta principal (ahora más compacta)
+                const priceElement = document.getElementById(`current-price-${safeSym}`);
+                const changeElement = document.getElementById(`price-change-${safeSym}`);
+
+                if (priceElement) {
+                    const formattedPrice = formatPrice(data.price);
+                    priceElement.textContent = formattedPrice;
+
+                    const prevPrice = prevPrices[symbol] || 0;
+                    if (prevPrice > 0 && data.price !== prevPrice) {
+                        const isUp = data.price > prevPrice;
+                        priceElement.className = `text-2xl font-bold ${isUp ? 'text-green-400 price-rise' : 'text-red-400 price-fall'}`;
+                        setTimeout(() => {
+                            priceElement.className = `text-2xl font-bold ${isUp ? 'text-green-400' : 'text-red-400'}`;
+                        }, 1000);
+                    } else {
+                        priceElement.className = `text-2xl font-bold text-white`;
+                    }
+                    prevPrices[symbol] = data.price;
+                }
+
+                if (changeElement && data.change24h !== undefined) {
+                    const change = parseFloat(data.change24h);
+                    const isPositive = change >= 0;
+                    changeElement.textContent = (isPositive ? '+' : '') + change.toFixed(2) + '%';
+                    changeElement.className = `px-2 py-1 rounded-full text-xs font-medium ${isPositive
+                        ? 'bg-green-900/30 text-green-400 border border-green-800/30'
+                        : 'bg-red-900/30 text-red-400 border border-red-800/30'}`;
+                }
+
+                // Actualizar el modal si está abierto
+                const modal = document.getElementById('token-details-modal');
+                if (modal) {
+                    const modalPriceElement = document.getElementById(`modal-current-price-${safeSym}`);
+                    const modalChangeElement = document.getElementById(`modal-price-change-${safeSym}`);
+                    const modalHighElement = document.getElementById(`modal-high-24h-${safeSym}`);
+                    const modalLowElement = document.getElementById(`modal-low-24h-${safeSym}`);
+                    const modalVolumeElement = document.getElementById(`modal-volume-24h-${safeSym}`);
+                    const modalUpdateElement = document.getElementById(`modal-last-update-${safeSym}`);
+
+                    if (modalPriceElement) {
+                        modalPriceElement.textContent = formatPrice(data.price);
+
+                        // Aplicar la misma animación que en la tarjeta principal
+                        if (prevPrice > 0 && data.price !== prevPrice) {
+                            const isUp = data.price > prevPrice;
+                            modalPriceElement.className = `text-3xl font-bold text-center ${isUp ? 'text-green-400 price-rise' : 'text-red-400 price-fall'}`;
+                            setTimeout(() => {
+                                modalPriceElement.className = `text-3xl font-bold text-center ${isUp ? 'text-green-400' : 'text-red-400'}`;
+                            }, 1000);
+                        }
+                    }
+
+                    if (modalChangeElement && data.change24h !== undefined) {
+                        const change = parseFloat(data.change24h);
+                        const isPositive = change >= 0;
+                        modalChangeElement.textContent = (isPositive ? '+' : '') + change.toFixed(2) + '%';
+                        modalChangeElement.className = `px-3 py-1 rounded-full text-sm font-medium ${isPositive
+                            ? 'bg-green-900/30 text-green-400 border border-green-800/30'
+                            : 'bg-red-900/30 text-red-400 border border-red-800/30'}`;
+                    }
+
+                    if (modalHighElement && data.high24h !== undefined) {
+                        modalHighElement.textContent = formatPrice(data.high24h);
+                    }
+
+                    if (modalLowElement && data.low24h !== undefined) {
+                        modalLowElement.textContent = formatPrice(data.low24h);
+                    }
+
+                    if (modalVolumeElement && data.volume24h !== undefined) {
+                        modalVolumeElement.textContent = formatVolume(data.volume24h);
+                    }
+
+                    if (modalUpdateElement) {
+                        const now = new Date();
+                        modalUpdateElement.textContent = now.toLocaleTimeString();
+                    }
+                }
+            });
+        }
+
+        // Función para obtener las principales criptomonedas
+        function fetchTopCryptos() {
+            // Normalmente se haría una llamada a la API, pero para este ejemplo usaremos datos locales
+            // combinados con los tokens disponibles en el exchange actual
+
+            if (!availableTokens[currentExchange]) {
+                fetch('/mercado/api/available-tokens')
+                    .then(response => response.json())
+                    .then(data => {
+                        availableTokens = data;
+                        generateTopCryptosFromAvailable();
+                    })
+                    .catch(error => {
+                        console.error('Error al obtener tokens para top 10:', error);
+                    });
+            } else {
+                generateTopCryptosFromAvailable();
+            }
+        }
+
+        // Generar top 10 a partir de tokens disponibles
+        function generateTopCryptosFromAvailable() {
+            if (!availableTokens[currentExchange]) return;
+
+            // Seleccionar tokens que probablemente sean populares (terminan en USDT, BTC, ETH, etc.)
+            const allTokens = Object.keys(availableTokens[currentExchange]);
+
+            // Criterios de prioridad
+            const popularPairs = [
+                'BTC/USDT', 'ETH/USDT', 'ADA/USDT', 'XRP/USDT', 'DOGE/USDT',
+                'SOL/USDT', 'DOT/USDT', 'LTC/USDT', 'AVAX/USDT', 'MATIC/USDT',
+                'LINK/USDT', 'UNI/USDT', 'ATOM/USDT', 'ETC/USDT', 'XLM/USDT'
+            ];
+
+            // Filtrar para encontrar los que coinciden con popularPairs
+            let topTokens = allTokens.filter(token => popularPairs.includes(token));
+
+            // Si no hay suficientes, agregar tokens que terminen en /USDT
+            if (topTokens.length < 10) {
+                const additionalTokens = allTokens
+                    .filter(token => token.endsWith('/USDT') && !topTokens.includes(token))
+                    .slice(0, 10 - topTokens.length);
+
+                topTokens = [...topTokens, ...additionalTokens];
+            }
+
+            // Si aún no hay suficientes, completar con cualquier token
+            if (topTokens.length < 10) {
+                const remainingTokens = allTokens
+                    .filter(token => !topTokens.includes(token))
+                    .slice(0, 10 - topTokens.length);
+
+                topTokens = [...topTokens, ...remainingTokens];
+            }
+
+            // Limitar a 10 elementos
+            topCryptos = topTokens.slice(0, 10);
+
+            // Actualizar la UI
+            updateTopCryptos();
+        }
+
+        // Actualizar el UI de top criptomonedas
+        function updateTopCryptos() {
+            const container = document.getElementById('top-cryptos-container');
+            if (!container) return;
+
+            container.innerHTML = '';
+
+            if (!topCryptos.length) {
+                container.innerHTML = `
+                    <div class="text-center w-full py-4 text-gray-400">
+                        <p>Cargando tokens populares...</p>
+                    </div>
+                `;
+                return;
+            }
+
+            topCryptos.forEach(symbol => {
+                const isSelected = (selectedTokens[currentExchange] || []).includes(symbol);
+
+                const item = document.createElement('div');
+                item.className = `top-crypto-item px-3 py-2 rounded-lg ${isSelected ? 'bg-blue-600/30 text-blue-300' : 'bg-slate-700/50 text-white'} transition-all duration-300`;
+                item.title = translations[currentLang].clickToAdd;
+
+                item.innerHTML = `
+                    <div class="font-medium">${symbol.split('/')[0]}</div>
+                    <div class="text-xs text-gray-400">${symbol.split('/')[1]}</div>
+                `;
+
+                item.onclick = function() {
+                    if (!selectedTokens[currentExchange]) {
+                        selectedTokens[currentExchange] = [];
+                    }
+
+                    const index = selectedTokens[currentExchange].indexOf(symbol);
+
+                    if (index === -1) {
+                        // Agregar token si no está seleccionado
+                        if (selectedTokens[currentExchange].length < 20) {
+                            selectedTokens[currentExchange].push(symbol);
+
+                            // Actualizar la UI sin refrescar la página
+                            const container = document.getElementById('price-cards-container');
+                            const noTokensMessage = document.getElementById('no-tokens-message');
+
+                            if (noTokensMessage && container) {
+                                noTokensMessage.classList.add('hidden');
+                                container.classList.remove('hidden');
+                            }
+
+                            // Crear tarjeta para el nuevo token
+                            createPriceCards(currentExchange, [symbol]);
+
+                            // Actualizar el estilo del elemento para mostrar que está seleccionado
+                            item.className = 'top-crypto-item px-3 py-2 rounded-lg bg-blue-600/30 text-blue-300 transition-all duration-300';
+
+                            // Guardar configuración
+                            localStorage.setItem('botxi-market-config', JSON.stringify(selectedTokens));
+                        } else {
+                            toastr.warning(translations[currentLang].maxSelected);
+                        }
+                    } else {
+                        // Eliminar token si ya está seleccionado
+                        selectedTokens[currentExchange].splice(index, 1);
+
+                        // Eliminar la tarjeta si existe
+                        const cardElement = document.getElementById(`price-card-${symbol.replace('/', '-')}`);
+                        if (cardElement) {
+                            cardElement.classList.add('animate-fade-out');
+                            setTimeout(() => {
+                                cardElement.remove();
+
+                                // Verificar si no hay más tarjetas
+                                const container = document.getElementById('price-cards-container');
+                                const noTokensMessage = document.getElementById('no-tokens-message');
+
+                                if (container && container.children.length === 0 && noTokensMessage) {
+                                    container.classList.add('hidden');
+                                    noTokensMessage.classList.remove('hidden');
+                                }
+                            }, 300);
+                        }
+
+                        // Actualizar el estilo del elemento para mostrar que no está seleccionado
+                        item.className = 'top-crypto-item px-3 py-2 rounded-lg bg-slate-700/50 text-white transition-all duration-300';
+
+                        // Guardar configuración
+                        localStorage.setItem('botxi-market-config', JSON.stringify(selectedTokens));
+                    }
+
+                    // Actualizar monitoreo para reflejar cambios
+                    stopPriceMonitoring(currentExchange);
+                    startPriceMonitoring(currentExchange);
+                };
+
+                container.appendChild(item);
+            });
+        }
+
+        function formatPrice(price) {
+            if (price === undefined || price === null) return '--';
+            const numPrice = typeof price === 'string' ? parseFloat(price) : price;
+            if (numPrice < 0.0001) {
+                return numPrice.toFixed(8);
+            } else if (numPrice < 0.01) {
+                return numPrice.toFixed(6);
+            } else if (numPrice < 1) {
+                return numPrice.toFixed(4);
+            } else if (numPrice < 1000) {
+                return numPrice.toFixed(2);
+            } else {
+                return numPrice.toLocaleString(undefined, { maximumFractionDigits: 2 });
+            }
+        }
+
+        function formatVolume(volume) {
+            if (volume === undefined || volume === null) return '--';
+            const numVolume = typeof volume === 'string' ? parseFloat(volume) : volume;
+            if (numVolume >= 1_000_000_000) {
+                return (numVolume / 1_000_000_000).toFixed(2) + 'B';
+            } else if (numVolume >= 1_000_000) {
+                return (numVolume / 1_000_000).toFixed(2) + 'M';
+            } else if (numVolume >= 1_000) {
+                return (numVolume / 1_000).toFixed(2) + 'K';
+            } else {
+                return numVolume.toFixed(2);
+            }
+        }
+
+        // Actualiza esta función para mostrar correctamente los saldos, incluso los que son 0
+        function loadAccountBalance() {
+            if (!currentExchange) return;
+
+            const footerBalanceElement = document.getElementById('total-balance-footer');
+            const footerTokensContainer = document.getElementById('footer-tokens-container');
+            const footerTableBody = document.getElementById('balance-table-body-footer');
+
+            if (footerTableBody) {
+                footerTableBody.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="px-4 py-2 text-center text-gray-400 i18n" data-key="loadingBalance">
+                            Cargando saldos...
+                        </td>
+                    </tr>
+                `;
+            }
+
+            fetch(`/mercado/api/account-balance/${currentExchange}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        if (footerTableBody) {
+                            footerTableBody.innerHTML = `
+                                <tr>
+                                    <td colspan="4" class="px-4 py-2 text-center text-red-400">
+                                        ${data.error}
+                                    </td>
+                                </tr>
+                            `;
+                        }
+                        return;
+                    }
+
+                    // Actualizar el saldo total en el pie de página
+                    if (footerBalanceElement) {
+                        const balanceValue = document.getElementById('balance-value');
+                        if (balanceValue) {
+                            balanceValue.textContent = `${formatPrice(data.total_balance)} USDT`;
+                        }
+                    }
+
+                    // Actualizar la tabla detallada en el panel expandible
+                    if (footerTableBody) {
+                        let tableContent = '';
+
+                        // IMPORTANTE: Asegurarse de que data.balances exista y tenga elementos
+                        const balances = data.balances || [];
+
+                        if (balances.length > 0) {
+                            balances.forEach(balance => {
+                                // Mostrar todos los saldos, incluso los que son 0
+                                tableContent += `
+                                    <tr class="hover:bg-slate-700/30">
+                                        <td class="px-4 py-2 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <span class="font-medium text-white">${balance.asset}</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-right font-medium">
+                                            ${formatNumber(balance.available)}
+                                        </td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-right text-gray-300">
+                                            ${formatNumber(balance.in_order)}
+                                        </td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-right font-medium text-green-400">
+                                            ${formatPrice(balance.total_value)} USDT
+                                        </td>
+                                    </tr>
+                                `;
+                            });
+                        } else {
+                            // Si no hay saldos, mostrar un mensaje claro
+                            tableContent = `
+                                <tr>
+                                    <td colspan="4" class="px-4 py-2 text-center text-gray-400">
+                                        No hay datos de saldo disponibles
+                                    </td>
+                                </tr>
+                            `;
+                        }
+
+                        footerTableBody.innerHTML = tableContent;
+                    }
+
+                    // Mostrar los tokens principales en el pie de página
+                    if (footerTokensContainer && data.balances && data.balances.length > 0) {
+                        // Ordenar por valor total y mostrar los primeros 5
+                        const topTokens = [...data.balances]
+                            .sort((a, b) => b.total_value - a.total_value)
+                            .slice(0, 5);
+
+                        footerTokensContainer.innerHTML = '';
+
+                        topTokens.forEach(token => {
+                            const tokenElement = document.createElement('div');
+                            tokenElement.className = 'text-center footer-token';
+                            tokenElement.innerHTML = `
+                                <p class="text-xs text-gray-400">${token.asset}</p>
+                                <p class="text-sm font-medium text-white">${formatPrice(token.total_value)}</p>
+                            `;
+                            footerTokensContainer.appendChild(tokenElement);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al cargar saldos:', error);
+                    if (footerTableBody) {
+                        footerTableBody.innerHTML = `
+                            <tr>
+                                <td colspan="4" class="px-4 py-2 text-center text-red-400">
+                                    Error al cargar saldos: ${error.message}
+                                </td>
+                            </tr>
+                        `;
+                    }
+                });
+        }
+
+    // Actualizar las traducciones para incluir las nuevas opciones
+    translations.es.fullscreen = "Pantalla Completa";
+    translations.es.exitFullscreen = "Salir";
+    translations.en.fullscreen = "Fullscreen";
+    translations.en.exitFullscreen = "Exit";
+    translations.pt.fullscreen = "Tela Cheia";
+    translations.pt.exitFullscreen = "Sair";
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const fullscreenButton = document.getElementById('fullscreen-button');
+        const exitFullscreenButton = document.getElementById('exit-fullscreen-button');
+        const priceCardsContainer = document.getElementById('price-cards-container');
+
+        // Guardar referencias a elementos a ocultar/mostrar
+        const elementsToHide = [
+            document.querySelector('nav'),
+            document.querySelector('footer'),
+            ...Array.from(document.querySelectorAll('.mb-8')),
+            ...Array.from(document.querySelectorAll('h3:not(.price-card h3)'))
+        ].filter(el => el);
+
+        // Estado de pantalla completa
+        let isFullscreen = false;
+
+        function enterFullscreenMode() {
+            if (isFullscreen) return;
+            isFullscreen = true;
+
+            // Guardar posición de scroll
+            window.fullscreenScrollPosition = window.scrollY;
+
+            // Ocultar elementos
+            elementsToHide.forEach(el => {
+                if (el) el.classList.add('hidden');
+            });
+
+            // Expandir contenedor
+            document.body.classList.add('overflow-hidden');
+            priceCardsContainer.classList.add('fullscreen-container');
+
+            // Mostrar botón de salir
+            exitFullscreenButton.classList.remove('hidden');
+
+            // Actualizar layout
+            updateFullscreenLayout(true);
+
+            // Ir al inicio
+            window.scrollTo(0, 0);
+        }
+
+        function exitFullscreenMode() {
+            if (!isFullscreen) return;
+            isFullscreen = false;
+
+            // Mostrar elementos
+            elementsToHide.forEach(el => {
+                if (el) el.classList.remove('hidden');
+            });
+
+            // Restaurar contenedor
+            document.body.classList.remove('overflow-hidden');
+            priceCardsContainer.classList.remove('fullscreen-container');
+
+            // Ocultar botón de salir
+            exitFullscreenButton.classList.add('hidden');
+
+            // Restaurar layout
+            updateFullscreenLayout(false);
+
+            // Restaurar scroll
+            if (window.fullscreenScrollPosition !== undefined) {
+                window.scrollTo(0, window.fullscreenScrollPosition);
+            }
+        }
+
+        function updateFullscreenLayout(isFullscreen) {
+            if (isFullscreen) {
+                priceCardsContainer.classList.add(
+                    'grid-cols-1', 'sm:grid-cols-2', 'md:grid-cols-3',
+                    'lg:grid-cols-4', 'xl:grid-cols-5', '2xl:grid-cols-6'
+                );
+            } else {
+                priceCardsContainer.classList.remove(
+                    'grid-cols-1', 'sm:grid-cols-2', 'md:grid-cols-3',
+                    'lg:grid-cols-4', 'xl:grid-cols-5', '2xl:grid-cols-6'
+                );
+            }
+        }
+
+        // Eventos de botones
+        if (fullscreenButton) {
+            fullscreenButton.addEventListener('click', enterFullscreenMode);
+        }
+
+        if (exitFullscreenButton) {
+            exitFullscreenButton.addEventListener('click', exitFullscreenMode);
+        }
+
+        // Salir con tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isFullscreen) {
+                exitFullscreenMode();
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // --- Menú hamburguesa principal ---
+      const mainMenuButton = document.getElementById('main-menu-button');
+      const mainMenuDropdown = document.getElementById('main-menu-dropdown');
+
+      mainMenuButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        mainMenuDropdown.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('#main-menu-selector')) {
+          mainMenuDropdown.classList.add('hidden');
+        }
+      });
+
+      // --- Submenús de Idioma y Tema ---
+      const langSubmenuButton = document.getElementById('language-submenu-button');
+      const langSubmenu = document.getElementById('language-submenu');
+      const themeSubmenuButton = document.getElementById('theme-submenu-button');
+      const themeSubmenu = document.getElementById('theme-submenu');
+
+      if (langSubmenuButton && langSubmenu) {
+        langSubmenuButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          // Abre/cierra el submenú de idioma
+          langSubmenu.classList.toggle('hidden');
+          // Cierra el otro submenú (tema) si estaba abierto
+          themeSubmenu.classList.add('hidden');
+        });
+      }
+
+      if (themeSubmenuButton && themeSubmenu) {
+        themeSubmenuButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          // Abre/cierra el submenú de tema
+          themeSubmenu.classList.toggle('hidden');
+          // Cierra el otro submenú (idioma) si estaba abierto
+          langSubmenu.classList.add('hidden');
+        });
+      }
+
+      // --- Manejo de clicks en las opciones de idioma ---
+      document.querySelectorAll('.language-option').forEach(option => {
+        option.addEventListener('click', function(e) {
+          e.preventDefault();
+          const lang = this.getAttribute('data-lang');
+          // Llama a tu función setLanguage(lang)
+          setLanguage(lang);
+
+          // Oculta ambos submenús y el menú principal
+          langSubmenu.classList.add('hidden');
+          themeSubmenu.classList.add('hidden');
+          mainMenuDropdown.classList.add('hidden');
+        });
+      });
+
+      // --- Manejo de clicks en las opciones de tema ---
+      document.querySelectorAll('.theme-option').forEach(option => {
+        option.addEventListener('click', function(e) {
+          e.preventDefault();
+          const theme = this.getAttribute('data-theme');
+          // Llama a tu función setTheme(theme)
+          setTheme(theme);
+
+          // Oculta ambos submenús y el menú principal
+          themeSubmenu.classList.add('hidden');
+          langSubmenu.classList.add('hidden');
+          mainMenuDropdown.classList.add('hidden');
+        });
+      });
+    });
+</script>
+
+
+    </script>
+</body>
+</html>

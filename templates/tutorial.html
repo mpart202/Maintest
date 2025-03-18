@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Completo BOTXI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a","950":"#172554"}
+                    }
+                },
+                fontFamily: {
+                    'body': [
+                        'Inter', 
+                        'ui-sans-serif', 
+                        'system-ui', 
+                        '-apple-system', 
+                        'system-ui', 
+                        'Segoe UI', 
+                        'Roboto', 
+                        'Helvetica Neue', 
+                        'Arial', 
+                        'Noto Sans', 
+                        'sans-serif', 
+                        'Apple Color Emoji', 
+                        'Segoe UI Emoji', 
+                        'Segoe UI Symbol', 
+                        'Noto Color Emoji'
+                    ],
+                    'sans': [
+                        'Inter', 
+                        'ui-sans-serif', 
+                        'system-ui', 
+                        '-apple-system', 
+                        'system-ui', 
+                        'Segoe UI', 
+                        'Roboto', 
+                        'Helvetica Neue', 
+                        'Arial', 
+                        'Noto Sans', 
+                        'sans-serif', 
+                        'Apple Color Emoji', 
+                        'Segoe UI Emoji', 
+                        'Segoe UI Symbol', 
+                        'Noto Color Emoji'
+                    ]
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-black text-gray-100 font-body">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-8">Tutorial Completo del Sistema de Gestión de Bots de Trading</h1>
+
+        <div class="space-y-8">
+            <section class="bg-gray-900 rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-center">Introducción</h2>
+                <p class="text-gray-300">Este sistema permite gestionar bots de trading en múltiples exchanges de criptomonedas. Puedes configurar diferentes exchanges, añadir pares de trading (tokens), y controlar las estrategias de trading para cada par.</p>
+            </section>
+
+            <section class="bg-gray-900 rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-center">Página Principal: Estado de los Exchanges</h2>
+                <p class="text-gray-300 mb-4">En la página principal, encontrarás una tabla con todos los exchanges configurados. Cada fila muestra:</p>
+                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                    <li><strong>ID del Exchange:</strong> Identificador único para cada exchange en el sistema.</li>
+                    <li><strong>Nombre del Exchange:</strong> El nombre del exchange (ej. Binance, OKX).</li>
+                    <li><strong>Estado:</strong> Indica si el bot está actualmente operando en este exchange.</li>
+                    <li><strong>Acciones:</strong> 
+                        <ul class="list-disc list-inside ml-4 mt-2">
+                            <li><strong>Iniciar/Detener:</strong> Controla la actividad del bot en este exchange.</li>
+                            <li><strong>Editar:</strong> Modifica la configuración del exchange.</li>
+                            <li><strong>Eliminar:</strong> Elimina el exchange del sistema.</li>
+                            <li><strong>Ver Tokens:</strong> Muestra los pares de trading configurados para este exchange.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="bg-gray-900 rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-center">Agregar un Nuevo Exchange</h2>
+                <p class="text-gray-300 mb-4">Para comenzar a operar en un nuevo exchange, primero debes agregarlo al sistema:</p>
+                <ol class="list-decimal list-inside text-gray-300 space-y-2">
+                    <li>Haz clic en "Agregar Exchange" en la página principal.</li>
+                    <li>Completa los siguientes campos:
+                        <ul class="list-disc list-inside ml-4 mt-2">
+                            <li><strong>ID del Exchange:</strong> Un identificador único que usarás para referirte a este exchange en el sistema.</li>
+                            <li><strong>Nombre del Exchange:</strong> El nombre oficial del exchange (ej. okx, binance). Debe coincidir exactamente con el nombre reconocido por el sistema.</li>
+                            <li><strong>API Key:</strong> La clave API de tu cuenta en el exchange. Se usa para autenticar las solicitudes del bot.</li>
+                            <li><strong>Secret:</strong> La clave secreta asociada con tu API Key. Nunca compartas esta información.</li>
+                            <li><strong>Password:</strong> Algunos exchanges requieren una contraseña adicional. Si no es necesario, déjalo en blanco.</li>
+                        </ul>
+                    </li>
+                    <li>Haz clic en "Agregar Exchange" para guardar la configuración.</li>
+                </ol>
+                <p class="text-gray-300 mt-4">Nota: Asegúrate de que las claves API tengan los permisos necesarios para realizar operaciones de trading.</p>
+            </section>
+
+            <section class="bg-gray-900 rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-center">Editar la Configuración de un Exchange</h2>
+                <p class="text-gray-300 mb-4">Si necesitas actualizar las credenciales o cambiar la configuración de un exchange:</p>
+                <ol class="list-decimal list-inside text-gray-300 space-y-2">
+                    <li>Localiza el exchange en la página principal y haz clic en "Editar".</li>
+                    <li>Actualiza los campos necesarios:
+                        <ul class="list-disc list-inside ml-4 mt-2">
+                            <li><strong>API Key:</strong> Si has generado una nueva clave API.</li>
+                            <li><strong>Secret:</strong> La nueva clave secreta asociada.</li>
+                            <li><strong>Password:</strong> Si el exchange lo requiere y ha cambiado.</li>
+                        </ul>
+                    </li>
+                    <li>Haz clic en "Guardar Cambios" para actualizar la información.</li>
+                </ol>
+                <p class="text-gray-300 mt-4">Importante: Cambiar estas credenciales afectará inmediatamente a las operaciones del bot en este exchange.</p>
+            </section>
+
+            <section class="bg-gray-900 rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-center">Gestión de Tokens</h2>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Agregar Tokens al Exchange</h3>
+                        <p class="text-gray-300 mb-2">Los tokens representan los pares de trading que el bot gestionará en cada exchange.</p>
+                        <ol class="list-decimal list-inside text-gray-300 space-y-2">
+                            <li>En la página principal, haz clic en "Ver Tokens" junto al exchange deseado.</li>
+                            <li>En la página de gestión de tokens, haz clic en "Agregar Token".</li>
+                            <li>Completa los detalles del token:
+                                <ul class="list-disc list-inside ml-4 mt-2">
+                                    <li><strong>Símbolo:</strong> El par de trading (ej. BTC/USDT). Debe coincidir exactamente con el formato del exchange.</li>
+                                    <li><strong>Spread:</strong> El porcentaje de diferencia entre el precio de compra y venta. Determina el margen de ganancia mínimo.</li>
+                                    <li><strong>Take Profit:</strong> El porcentaje de ganancia objetivo antes de vender.</li>
+                                    <li><strong>Cantidad de Trade:</strong> El monto a operar en cada transacción.</li>
+                                    <li><strong>Número Máximo de Órdenes:</strong> Limita la cantidad de órdenes abiertas simultáneas.</li>
+                                    <li><strong>Tiempo de Expiración de Órdenes:</strong> Tiempo en minutos antes de que una orden pendiente sea cancelada.</li>
+                                    <li><strong>Máximo de Pérdida Diaria:</strong> Límite de pérdida que, al alcanzarse, detiene las operaciones del token por ese día.</li>
+                                    <li><strong>Máximo de Órdenes de Venta:</strong> Limita la cantidad de órdenes de venta abiertas.</li>
+                                    <li><strong>Umbral de Reactivación:</strong> Porcentaje de recuperación necesario para reactivar el trading después de alcanzar la pérdida máxima diaria.</li>
+                                </ul>
+                            </li>
+                            <li>Haz clic en "Agregar Token" para finalizar.</li>
+                        </ol>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Editar un Token Existente</h3>
+                        <p class="text-gray-300 mb-2">Para ajustar la estrategia de trading de un token:</p>
+                        <ol class="list-decimal list-inside text-gray-300 space-y-2">
+                            <li>En la lista de tokens del exchange, haz clic en "Editar" junto al token deseado.</li>
+                            <li>Modifica los parámetros según sea necesario.</li>
+                            <li>Haz clic en "Guardar Cambios" para aplicar las modificaciones.</li>
+                        </ol>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2">Eliminar un Token</h3>
+                        <p class="text-gray-300 mb-2">Si ya no deseas operar un par específico:</p>
+                        <ol class="list-decimal list-inside text-gray-300 space-y-2">
+                            <li>Encuentra el token en la lista del exchange.</li>
+                            <li>Haz clic en "Eliminar" junto al token.</li>
+                            <li>Confirma la acción cuando se te solicite.</li>
+                        </ol>
+                        <p class="text-gray-300 mt-2">Nota: Eliminar un token detendrá todas las operaciones relacionadas y cancelará las órdenes abiertas.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-gray-900 rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-center">Control del Bot</h2>
+                <div class="space-y-4">
+                    <p class="text-gray-300"><strong>Iniciar el Bot:</strong> Para comenzar las operaciones en un exchange, haz clic en "Iniciar" junto al exchange en la página principal. Esto activará el bot para todos los tokens configurados en ese exchange.</p>
+                    <p class="text-gray-300"><strong>Detener el Bot:</strong> Para pausar todas las operaciones, haz clic en "Detener". Esto cancelará todas las órdenes pendientes y detendrá nuevas operaciones.</p>
+                    <p class="text-gray-300">Importante: Iniciar o detener el bot afecta a todos los tokens configurados en ese exchange.</p>
+                </div>
+            </section>
+
+            <section class="bg-gray-900 rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-center">Monitoreo del Bot</h2>
+                <p class="text-gray-300 mb-4">El sistema proporciona varias formas de seguir el rendimiento de tus operaciones:</p>
+                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                    <li><strong>Órdenes Abiertas:</strong> Visualiza todas las órdenes actualmente en el mercado.</li>
+                    <li><strong>Ganancias/Pérdidas (PnL):</strong> Revisa el rendimiento financiero de cada token y del exchange en general.</li>
+                    <li><strong>Precios Actuales:</strong> Observa los precios en tiempo real de los tokens que estás operando.</li>
+                </ul>
+                <p class="text-gray-300 mt-4">Usa estas herramientas para tomar decisiones informadas sobre tus estrategias de trading.</p>
+            </section>
+
+            <section class="bg-gray-900 rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-semibold mb-4 text-center">Consideraciones de Seguridad</h2>
+                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                    <li>Nunca compartas tus claves API o contraseñas con nadie.</li>
+                    <li>Utiliza claves API con permisos limitados cuando sea posible.</li>
+                    <li>Monitorea regularmente la actividad de tu cuenta para detectar cualquier anomalía.</li>
+                    <li>Considera usar autenticación de dos factores en tus cuentas de exchange.</li>
+                </ul>
+            </section>
+        </div>
+
+        <div class="text-center mt-8">
+            <a href="{{ url_for('login') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 inline-block">
+                Volver a la Página Principal
+            </a>
+        
+        </div>
+    </div>
+</body>
+</html>
