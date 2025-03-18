@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Exchange {{ exchange_id }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {"50":"#f0faff","100":"#e0f2fe","200":"#bae6fd","300":"#7dd3fc","400":"#38bdf8","500":"#0ea5e9","600":"#0284c7","700":"#0369a1","800":"#075985","900":"#0c4a6e","950":"#082f49"},
+                        blueEye: {
+                            "50": "#f0f9ff",
+                            "100": "#e0f7ff",
+"300": "#99d5ff",
+                            "400": "#5aafff",
+                            "500": "#3b82f6",
+                            "600": "#1d4ed8",
+                            "700": "#1e40af",
+                            "800": "#1e3a8a",
+                            "900": "#172554"
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .gradient-bg {
+            background: linear-gradient(-45deg, #7038ff, #00a3ff, #3b82f6, #5f8fff);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        .light-gradient-bg {
+            background: linear-gradient(-45deg, #e0f2fe, #93c5fd, #bfdbfe, #60a5fa);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        .blue-gradient-bg {
+            background: linear-gradient(-45deg, #1e3a8a, #1d4ed8, #3b82f6, #60a5fa);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        .description {
+            font-size: 0.875rem;
+            color: #9ca3af;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-gray-100 font-sans transition-colors duration-300" id="app-body">
+    <!-- Barra de navegación con selección de idioma y tema -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800 shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="text-2xl font-bold bg-clip-text text-transparent gradient-bg">BOTXI</div>
+                    <span class="bg-blue-600 text-xs px-2 py-1 rounded-full animate-pulse">Beta</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <!-- Selector de idioma -->
+                    <div class="relative" id="language-selector">
+                        <button class="flex items-center space-x-1 text-sm bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 transition-colors" id="language-button">
+                            <span class="language-text">🇪🇸 Español</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="absolute right-0 mt-2 bg-slate-800 rounded-lg shadow-lg p-2 hidden w-36 z-10" id="language-dropdown">
+                            <button data-lang="es" class="language-option block w-full text-left px-3 py-2 rounded hover:bg-slate-700 text-sm">🇪🇸 Español</button>
+                            <button data-lang="en" class="language-option block w-full text-left px-3 py-2 rounded hover:bg-slate-700 text-sm">🇺🇸 English</button>
+                            <button data-lang="pt" class="language-option block w-full text-left px-3 py-2 rounded hover:bg-slate-700 text-sm">🇧🇷 Português</button>
+                        </div>
+                    </div>
+
+                    <!-- Selector de tema -->
+                    <div class="relative" id="theme-selector">
+                        <button class="flex items-center space-x-1 text-sm bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 transition-colors" id="theme-button">
+                            <span class="theme-text">🌑 Oscuro</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="absolute right-0 mt-2 bg-slate-800 rounded-lg shadow-lg p-2 hidden w-36 z-10" id="theme-dropdown">
+                            <button data-theme="dark" class="theme-option block w-full text-left px-3 py-2 rounded hover:bg-slate-700 text-sm">🌑 <span class="theme-name">Oscuro</span></button>
+                            <button data-theme="light" class="theme-option block w-full text-left px-3 py-2 rounded hover:bg-slate-700 text-sm">☀️ <span class="theme-name">Claro</span></button>
+                            <button data-theme="blue-eye" class="theme-option block w-full text-left px-3 py-2 rounded hover:bg-slate-700 text-sm">👁️ <span class="theme-name">Azul</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8 max-w-2xl">
+        <h1 class="text-4xl font-bold mb-8 text-center text-transparent bg-clip-text gradient-bg">
+            <span class="i18n" data-key="editExchange">Editar Exchange</span>: {{ exchange_id }}
+        </h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="mb-6 animate-slide-up">
+              {% for category, message in messages %}
+                <li class="p-4 mb-4 text-sm rounded-xl
+                           {% if category == 'error' %}
+                              bg-red-900/30 text-red-200 border border-red-700
+                           {% else %}
+                              bg-green-900/30 text-green-200 border border-green-700
+                           {% endif %}
+                           transition-all duration-300 ease-in-out">
+                  {{ message }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('edit_exchange_route', exchange_id=exchange_id) }}" method="post" class="space-y-6 bg-slate-800/60 backdrop-blur-sm p-6 rounded-xl shadow-xl border border-slate-700 animate-fade-in">
+            <!-- Exchange ID (readonly) -->
+            <div>
+                <label for="id" class="block text-sm font-medium text-gray-300 mb-1">
+                    <span class="i18n" data-key="exchangeId">ID del Exchange:</span>
+                </label>
+                <input
+                    type="text"
+                    value="{{ exchange_id }}"
+                    readonly
+                    class="w-full px-3 py-2 bg-slate-700/50 border border-slate-600 rounded-lg
+                           text-white placeholder-gray-400 focus:outline-none
+                           focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                           transition-colors duration-200">
+                <p id="desc_id" class="description i18n" data-key="idDescription">El ID del Exchange no puede ser modificado.</p>
+            </div>
+
+            <!-- API Key -->
+            <div>
+                <label for="api_key" class="block text-sm font-medium text-gray-300 mb-1">
+                    <span class="i18n" data-key="apiKey">API Key:</span>
+                </label>
+                <div class="relative">
+                    <input
+                        type="password"
+                        id="api_key"
+                        name="api_key"
+                        value="{{ exchange.api_key }}"
+                        required
+                        class="w-full px-3 py-2 bg-slate-700/80 border border-slate-600 rounded-lg
+                               text-white placeholder-gray-400 focus:outline-none
+                               focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                               transition-colors duration-200">
+                    <button type="button" onclick="toggleApiKeyVisibility()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+                <p id="desc_api_key" class="description i18n" data-key="apiKeyDescription">La clave API que te proporciona el exchange.</p>
+            </div>
+
+            <!-- Secret -->
+            <div>
+                <label for="secret" class="block text-sm font-medium text-gray-300 mb-1">
+                    <span class="i18n" data-key="secret">Secret:</span>
+                </label>
+                <div class="relative">
+                    <input
+                        type="password"
+                        id="secret"
+                        name="secret"
+                        value="{{ exchange.secret }}"
+                        required
+                        class="w-full px-3 py-2 bg-slate-700/80 border border-slate-600 rounded-lg
+                               text-white placeholder-gray-400 focus:outline-none
+                               focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                               transition-colors duration-200">
+                    <button type="button" onclick="toggleSecretVisibility()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+                <p id="desc_secret" class="description i18n" data-key="secretDescription">La clave secreta asociada con tu API Key.</p>
+            </div>
+
+            <!-- Password (opcional) -->
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-300 mb-1">
+                    <span class="i18n" data-key="password">Password (si aplica):</span>
+                </label>
+                <div class="relative">
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        value="{{ exchange.password }}"
+                        class="w-full px-3 py-2 bg-slate-700/80 border border-slate-600 rounded-lg
+                               text-white placeholder-gray-400 focus:outline-none
+                               focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                               transition-colors duration-200">
+                    <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+                <p id="desc_password" class="description i18n" data-key="passwordDescription">Algunos exchanges requieren una contraseña adicional. Si no es necesario, déjalo en blanco.</p>
+            </div>
+
+            <!-- Botón para guardar -->
+            <div class="mt-6">
+                <button
+                    type="submit"
+                    class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 ease-in-out shadow-lg shadow-blue-600/20 transform hover:scale-105">
+                    <span class="i18n" data-key="saveChanges">Guardar Cambios</span>
+                </button>
+            </div>
+        </form>
+
+        <!-- Botón Volver -->
+        <div class="mt-6 text-center">
+            <a href="{{ url_for('index') }}" class="inline-block bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-xl transition-colors flex items-center justify-center space-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+                <span class="i18n" data-key="back">Volver</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Botón de Tutorial -->
+    <div class="fixed bottom-4 right-4">
+        <a href="https://chatgpt.com/g/g-67701000b5e88191afa7fbef8a1789fa-botxi-help"
+           target="_blank"
+           class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-2 px-4 rounded-xl
+                  shadow-lg shadow-blue-600/20 transition-all duration-300 ease-in-out transform hover:scale-105
+                  flex items-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+            </svg>
+            <span class="i18n" data-key="tutorial">Tutorial</span>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Traducciones
+        const translations = {
+            es: {
+                editExchange: "Editar Exchange",
+                exchangeId: "ID del Exchange:",
+                idDescription: "El ID del Exchange no puede ser modificado.",
+                apiKey: "API Key:",
+                apiKeyDescription: "La clave API que te proporciona el exchange.",
+                secret: "Secret:",
+                secretDescription: "La clave secreta asociada con tu API Key.",
+                password: "Password (si aplica):",
+                passwordDescription: "Algunos exchanges requieren una contraseña adicional. Si no es necesario, déjalo en blanco.",
+                saveChanges: "Guardar Cambios",
+                back: "Volver",
+                tutorial: "Tutorial"
+            },
+            en: {
+                editExchange: "Edit Exchange",
+                exchangeId: "Exchange ID:",
+                idDescription: "The Exchange ID cannot be modified.",
+                apiKey: "API Key:",
+                apiKeyDescription: "The API key provided by the exchange.",
+                secret: "Secret:",
+                secretDescription: "The secret key associated with your API Key.",
+                password: "Password (if applicable):",
+                passwordDescription: "Some exchanges require an additional password. If not needed, leave it blank.",
+                saveChanges: "Save Changes",
+                back: "Back",
+                tutorial: "Tutorial"
+            },
+            pt: {
+                editExchange: "Editar Exchange",
+                exchangeId: "ID do Exchange:",
+                idDescription: "O ID do Exchange não pode ser modificado.",
+                apiKey: "Chave API:",
+                apiKeyDescription: "A chave API fornecida pelo exchange.",
+                secret: "Secret:",
+                secretDescription: "A chave secreta associada à sua API Key.",
+                password: "Senha (se aplicável):",
+                passwordDescription: "Alguns exchanges exigem uma senha adicional. Se não for necessário, deixe em branco.",
+                saveChanges: "Salvar Alterações",
+                back: "Voltar",
+                tutorial: "Tutorial"
+            }
+        };
+
+        // Cargar tema y lenguaje desde localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obtener preferencias guardadas
+            const currentLang = localStorage.getItem('botxi-language') || 'es';
+            const currentTheme = localStorage.getItem('botxi-theme') || 'dark';
+
+            // Aplicar tema
+            applyTheme(currentTheme);
+
+            // Aplicar traducciones
+            applyTranslations(currentLang);
+
+            // Configurar eventos para el selector de idioma
+            const langButton = document.getElementById('language-button');
+            const langDropdown = document.getElementById('language-dropdown');
+
+            langButton.addEventListener('click', function() {
+                langDropdown.classList.toggle('hidden');
+            });
+
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    applyTranslations(lang);
+                    localStorage.setItem('botxi-language', lang);
+                    langDropdown.classList.add('hidden');
+
+                    // Actualizar texto del botón de idioma
+                    const langEmoji = lang === 'es' ? '🇪🇸' : lang === 'en' ? '🇺🇸' : '🇧🇷';
+                    const langName = lang === 'es' ? 'Español' : lang === 'en' ? 'English' : 'Português';
+                    langButton.querySelector('.language-text').textContent = `${langEmoji} ${langName}`;
+                });
+            });
+
+            // Configurar eventos para el selector de tema
+            const themeButton = document.getElementById('theme-button');
+            const themeDropdown = document.getElementById('theme-dropdown');
+
+            themeButton.addEventListener('click', function() {
+                themeDropdown.classList.toggle('hidden');
+            });
+
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    applyTheme(theme);
+                    localStorage.setItem('botxi-theme', theme);
+                    themeDropdown.classList.add('hidden');
+
+                    // Actualizar texto del botón de tema
+                    const themeEmoji = theme === 'dark' ? '🌑' : theme === 'light' ? '☀️' : '👁️';
+                    const themeName = translations[currentLang][theme] || themeNames[currentLang][theme];
+                    themeButton.querySelector('.theme-text').textContent = `${themeEmoji} ${themeName}`;
+                });
+            });
+
+            // Cerrar dropdowns al hacer clic fuera
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('#language-selector')) {
+                    langDropdown.classList.add('hidden');
+                }
+                if (!event.target.closest('#theme-selector')) {
+                    themeDropdown.classList.add('hidden');
+                }
+            });
+        });
+
+        function applyTheme(theme) {
+            document.documentElement.className = theme;
+            const body = document.getElementById("app-body");
+
+            if (theme === 'dark') {
+                body.className = 'bg-slate-900 text-gray-100 font-sans transition-colors duration-300';
+                document.querySelector('nav').className = 'sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800 shadow-md';
+            } else if (theme === 'light') {
+                body.className = 'bg-white text-slate-900 font-sans transition-colors duration-300';
+                document.querySelector('nav').className = 'sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-slate-300 shadow-md text-slate-900';
+            } else if (theme === 'blue-eye') {
+                body.className = 'bg-blueEye-900 text-blueEye-100 font-sans transition-colors duration-300';
+                document.querySelector('nav').className = 'sticky top-0 z-50 backdrop-blur-md bg-blueEye-900/80 border-b border-blueEye-800 shadow-md';
+            }
+        }
+
+        function applyTranslations(lang) {
+            document.querySelectorAll('.i18n').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (key && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        // Funciones para mostrar/ocultar campos sensibles
+        function toggleApiKeyVisibility() {
+            const apiKeyInput = document.getElementById("api_key");
+            if (apiKeyInput.type === "password") {
+                var apiKey = apiKeyInput.value;
+                var visiblePart = apiKey.substr(0, Math.floor(apiKey.length / 2));
+                var hiddenPart = '*'.repeat(apiKey.length - visiblePart.length);
+                apiKeyInput.type = "text";
+                apiKeyInput.value = visiblePart + hiddenPart;
+            } else {
+                apiKeyInput.type = "password";
+            }
+        }
+
+        function toggleSecretVisibility() {
+            const secretInput = document.getElementById("secret");
+            if (secretInput.type === "password") {
+                secretInput.type = "text";
+            } else {
+                secretInput.type = "password";
+            }
+        }
+
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById("password");
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+    </script>
+</body>
+</html>

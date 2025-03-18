@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-gray-900">
+<head>
+    <meta charset="UTF-8">
+    <title>PnL de Exchange {{ exchange_id }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            "50": "#f0f9ff",
+                            "100": "#e0f2fe",
+                            "200": "#bae6fd",
+                            "300": "#7dd3fc",
+                            "400": "#38bdf8",
+                            "500": "#0ea5e9",
+                            "600": "#0284c7",
+                            "700": "#0369a1",
+                            "800": "#075985",
+                            "900": "#0c4a6e",
+                            "950": "#082f49"
+                        }
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body class="h-full bg-gray-900 text-gray-100 font-sans">
+    <div class="min-h-full">
+        <nav class="gradient-bg">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 items-center justify-between">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <h1 class="text-white text-xl font-bold">BOTXI</h1>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <a href="{{ url_for('view_exchange', exchange_id=exchange_id) }}" class="text-white hover:bg-primary-600 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">Volver al Exchange</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <header class="bg-gray-800 shadow">
+            <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                <h1 class="text-3xl font-bold tracking-tight text-white">PnL para el Exchange: {{ exchange_id }}</h1>
+                <p class="mt-2 text-xl text-gray-300">Total PnL: {{ total_pnl }}</p>
+
+                <!-- Sección para tokens Infinity -->
+                {% if infinity_tokens %}
+                <div class="mt-6">
+                    <h2 class="text-xl font-semibold mb-3 text-gray-200">Tokens Infinity</h2>
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+                        {% for symbol in infinity_tokens %}
+                        <div class="bg-gray-700 rounded-lg p-4 shadow">
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="text-lg font-medium text-white">{{ symbol }}</h3>
+                                <span class="px-2 py-1 text-xs rounded-full bg-blue-500/20 text-blue-300 border border-blue-600/30">
+                                    Infinity
+                                </span>
+                            </div>
+                            <div class="flex justify-between mt-2">
+                                <span class="text-gray-400">ROI:</span>
+                                <span class="font-bold {% if bot.get_infinity_roi(user_id, exchange_id, symbol) > 0 %}text-green-400{% elif bot.get_infinity_roi(user_id, exchange_id, symbol) < 0 %}text-red-400{% else %}text-gray-300{% endif %}">
+                                    {{ bot.get_infinity_roi(user_id, exchange_id, symbol) }}%
+                                </span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </header>
+
+        <main class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+            <div class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">Gráficos de PnL por Token</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {% for symbol in symbols %}
+                    <div class="bg-gray-800 p-4 rounded-lg shadow">
+                        <canvas id="chart-{{ symbol }}"></canvas>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="bg-gray-800 shadow-md rounded-lg overflow-hidden">
+                <div class="p-4">
+                    <h2 class="text-2xl font-semibold mb-4">Detalles de Transacciones</h2>
+                    <div class="overflow-x-auto">
+                        <table id="pnlTable" class="w-full text-sm text-left text-gray-400">
+                            <thead class="text-xs uppercase bg-gray-700 text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">Símbolo</th>
+                                    <th scope="col" class="px-6 py-3">Compra</th>
+                                    <th scope="col" class="px-6 py-3">Venta</th>
+                                    <th scope="col" class="px-6 py-3">Comisión</th>
+                                    <th scope="col" class="px-6 py-3">PNL</th>
+                                    <th scope="col" class="px-6 py-3">Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-gray-600">
+                                    <td class="px-6 py-2"><input type="text" id="symbolFilter" placeholder="Filtrar Símbolo" class="w-full bg-gray-700 text-white px-2 py-1 rounded"></td>
+                                    <td class="px-6 py-2"><input type="text" id="buyFilter" placeholder="Filtrar Compra" class="w-full bg-gray-700 text-white px-2 py-1 rounded"></td>
+                                    <td class="px-6 py-2"><input type="text" id="sellFilter" placeholder="Filtrar Venta" class="w-full bg-gray-700 text-white px-2 py-1 rounded"></td>
+                                    <td class="px-6 py-2"><input type="text" id="commissionFilter" placeholder="Filtrar Comisión" class="w-full bg-gray-700 text-white px-2 py-1 rounded"></td>
+                                    <td class="px-6 py-2"><input type="text" id="pnlFilter" placeholder="Filtrar PNL" class="w-full bg-gray-700 text-white px-2 py-1 rounded"></td>
+                                    <td class="px-6 py-2"><input type="text" id="dateFilter" placeholder="Filtrar Fecha" class="w-full bg-gray-700 text-white px-2 py-1 rounded"></td>
+                                </tr>
+                                {% for transaction in transactions %}
+                                <tr class="border-b bg-gray-800 border-gray-700">
+                                    <td class="px-6 py-4">{{ transaction.symbol }}</td>
+                                    <td class="px-6 py-4">{{ transaction.buy_amount }} @ {{ transaction.buy_price }}</td>
+                                    <td class="px-6 py-4">{{ transaction.sell_amount }} @ {{ transaction.sell_price }}</td>
+                                    <td class="px-6 py-4">{{ transaction.commission }}</td>
+                                    <td class="px-6 py-4">{{ transaction.pnl }}</td>
+                                    <td class="px-6 py-4">{{ transaction.timestamp }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="fixed bottom-4 right-4 flex flex-col space-y-2">
+        <a href="https://chatgpt.com/g/g-67701000b5e88191afa7fbef8a1789fa-botxi-help" target="_blank" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            Tutorial
+        </a>
+    </div>
+
+    <script>
+        function filterTable() {
+            var symbol = document.getElementById('symbolFilter').value.toLowerCase();
+            var buy = document.getElementById('buyFilter').value.toLowerCase();
+            var sell = document.getElementById('sellFilter').value.toLowerCase();
+            var commission = document.getElementById('commissionFilter').value.toLowerCase();
+            var pnl = document.getElementById('pnlFilter').value.toLowerCase();
+            var date = document.getElementById('dateFilter').value.toLowerCase();
+
+            var table = document.getElementById('pnlTable');
+            var tr = table.getElementsByTagName('tr');
+
+            for (var i = 2; i < tr.length; i++) {
+                var td = tr[i].getElementsByTagName('td');
+                var symbolText = td[0].textContent.toLowerCase();
+                var buyText = td[1].textContent.toLowerCase();
+                var sellText = td[2].textContent.toLowerCase();
+                var commissionText = td[3].textContent.toLowerCase();
+                var pnlText = td[4].textContent.toLowerCase();
+                var dateText = td[5].textContent.toLowerCase();
+
+                if (symbolText.indexOf(symbol) > -1 &&
+                    buyText.indexOf(buy) > -1 &&
+                    sellText.indexOf(sell) > -1 &&
+                    commissionText.indexOf(commission) > -1 &&
+                    pnlText.indexOf(pnl) > -1 &&
+                    dateText.indexOf(date) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+
+        document.getElementById('symbolFilter').addEventListener('keyup', filterTable);
+        document.getElementById('buyFilter').addEventListener('keyup', filterTable);
+        document.getElementById('sellFilter').addEventListener('keyup', filterTable);
+        document.getElementById('commissionFilter').addEventListener('keyup', filterTable);
+        document.getElementById('pnlFilter').addEventListener('keyup', filterTable);
+        document.getElementById('dateFilter').addEventListener('keyup', filterTable);
+
+        // Crear gráficos por token
+        {% for symbol in symbols %}
+        var ctx{{ loop.index }} = document.getElementById('chart-{{ symbol }}').getContext('2d');
+        new Chart(ctx{{ loop.index }}, {
+            type: 'line',
+            data: {
+                labels: {{ dates[symbol]|tojson }},
+                datasets: [{
+                    label: 'PnL para {{ symbol }}',
+                    data: {{ pnl_data[symbol]|tojson }},
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'PnL para {{ symbol }}'
+                    }
+                }
+            }
+        });
+        {% endfor %}
+    </script>
+</body>
+</html>

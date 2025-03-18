@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>BOTXI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            "50": "#f0faff",
+                            "100": "#e0f2fe",
+                            "200": "#bae6fd",
+                            "300": "#7dd3fc",
+                            "400": "#38bdf8",
+                            "500": "#0ea5e9",
+                            "600": "#0284c7",
+                            "700": "#0369a1",
+                            "800": "#075985",
+                            "900": "#0c4a6e",
+                            "950": "#082f49"
+                        },
+                        blueEye: {
+                            "50": "#f0f9ff",
+                            "100": "#e0f7ff",
+                            "200": "#c0e8ff",
+                            "300": "#99d5ff",
+                            "400": "#5aafff",
+                            "500": "#3b82f6",
+                            "600": "#1d4ed8",
+                            "700": "#1e40af",
+                            "800": "#1e3a8a",
+                            "900": "#172554"
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'ui-sans-serif', 'system-ui', '-apple-system',
+                                 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue',
+                                 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji',
+                                 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .gradient-bg {
+            background: linear-gradient(-45deg, #7038ff, #00a3ff, #3b82f6, #5f8fff);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        .light-gradient-bg {
+            background: linear-gradient(-45deg, #e0f2fe, #93c5fd, #bfdbfe, #60a5fa);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        .blue-gradient-bg {
+            background: linear-gradient(-45deg, #1e3a8a, #1d4ed8, #3b82f6, #60a5fa);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        /* Temas */
+        .theme-dark {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --accent-color: #3b82f6;
+        }
+
+        .theme-light {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --accent-color: #3b82f6;
+        }
+
+        .theme-blue-eye {
+            --bg-primary: #15263a;
+            --bg-secondary: #1a365d;
+            --text-primary: #e0f2fe;
+            --text-secondary: #bae6fd;
+            --accent-color: #60a5fa;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-gray-100 font-sans transition-colors duration-300" id="app-body">
+    <!-- Barra de navegación con menú desplegable -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800 shadow-md mb-6">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="text-2xl font-bold bg-clip-text text-transparent gradient-bg">BOTXI</div>
+                    <span class="bg-blue-600 text-xs px-2 py-1 rounded-full animate-pulse-slow">Beta</span>
+                </div>
+
+                <!-- Menú desplegable -->
+                <div class="relative" id="main-menu-selector">
+                    <button class="flex items-center space-x-1 text-sm bg-slate-800 hover:bg-slate-700 rounded-lg px-3 py-2 transition-colors" id="main-menu-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="i18n" data-key="menu">Menú</span>
+                    </button>
+                    <div class="absolute right-0 mt-2 bg-slate-800 rounded-lg shadow-lg p-2 hidden w-48 z-10" id="main-menu-dropdown">
+                        <!-- Opción de Mercado -->
+                        <a href="/mercado"
+                           class="flex items-center space-x-1 text-sm hover:bg-slate-700 rounded-lg px-3 py-2 transition-colors w-full text-left mb-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1-1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+                            </svg>
+                            <span class="i18n" data-key="marketView">Mercado</span>
+                        </a>
+
+                        <!-- Selector de idioma -->
+                        <div class="mb-1 block w-full">
+                            <button class="flex items-center justify-between w-full text-sm hover:bg-slate-700 rounded-lg px-3 py-2 transition-colors" id="language-submenu-button">
+                                <div class="flex items-center">
+                                    <span class="language-text">🇪🇸 Español</span>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                            <div class="hidden ml-2 mt-1 bg-slate-700 rounded-lg p-1" id="language-submenu">
+                                <button data-lang="es" class="language-option block w-full text-left px-3 py-2 rounded hover:bg-slate-600 text-sm">🇪🇸 Español</button>
+                                <button data-lang="en" class="language-option block w-full text-left px-3 py-2 rounded hover:bg-slate-600 text-sm">🇺🇸 English</button>
+                                <button data-lang="pt" class="language-option block w-full text-left px-3 py-2 rounded hover:bg-slate-600 text-sm">🇧🇷 Português</button>
+                            </div>
+                        </div>
+
+                        <!-- Selector de tema -->
+                        <div class="mb-1 block w-full">
+                            <button class="flex items-center justify-between w-full text-sm hover:bg-slate-700 rounded-lg px-3 py-2 transition-colors" id="theme-submenu-button">
+                                <div class="flex items-center">
+                                    <span class="theme-text">🌑 Oscuro</span>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                            <div class="hidden ml-2 mt-1 bg-slate-700 rounded-lg p-1" id="theme-submenu">
+                                <button data-theme="dark" class="theme-option block w-full text-left px-3 py-2 rounded hover:bg-slate-600 text-sm">🌑 <span class="theme-name">Oscuro</span></button>
+                                <button data-theme="light" class="theme-option block w-full text-left px-3 py-2 rounded hover:bg-slate-600 text-sm">☀️ <span class="theme-name">Claro</span></button>
+                                <button data-theme="blue-eye" class="theme-option block w-full text-left px-3 py-2 rounded hover:bg-slate-600 text-sm">👁️ <span class="theme-name">Azul</span></button>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-slate-700 my-1 pt-1">
+                            <!-- Tutorial -->
+                            <a href="https://chatgpt.com/g/g-67701000b5e88191afa7fbef8a1789fa-botxi-help"
+                               target="_blank"
+                               class="flex items-center space-x-1 text-sm hover:bg-slate-700 rounded-lg px-3 py-2 transition-colors w-full text-left mb-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="i18n" data-key="tutorial">Tutorial</span>
+                            </a>
+
+                            <!-- Cambiar contraseña -->
+                            <a href="{{ url_for('change_password') }}"
+                               class="flex items-center space-x-1 text-sm hover:bg-slate-700 rounded-lg px-3 py-2 transition-colors w-full text-left mb-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="i18n" data-key="changePassword">Cambiar contraseña</span>
+                            </a>
+
+                            <!-- Cerrar Sesión -->
+                            <a href="{{ url_for('login') }}"
+                               class="flex items-center space-x-1 text-sm hover:bg-red-800/60 rounded-lg px-3 py-2 transition-colors w-full text-left">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="i18n" data-key="logout">Cerrar Sesión</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-4 max-w-6xl">
+        <h1 class="text-4xl font-bold text-center mb-8 bg-clip-text text-transparent gradient-bg">
+            <span class="i18n" data-key="title">BOTXI</span>
+        </h1>
+
+        <!-- Botón Agregar Exchange -->
+        <div class="flex justify-center mb-8">
+            <a href="{{ url_for('add_exchange_route') }}"
+               class="bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700
+                      text-white font-bold py-3 px-6 rounded-xl
+                      transition-all duration-300 ease-in-out transform hover:scale-105
+                      flex items-center space-x-2 shadow-lg shadow-blue-600/20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+                </svg>
+                <span class="i18n" data-key="addExchange">Agregar Exchange</span>
+            </a>
+        </div>
+
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="mb-6">
+              {% for category, message in messages %}
+                <li class="p-4 mb-4 text-sm rounded-xl
+                           {% if category == 'error' %}
+                              bg-red-900/30 text-red-200 border border-red-700
+                           {% else %}
+                              bg-green-900/30 text-green-200 border border-green-700
+                           {% endif %}
+                           animate-fade-in">
+                  {{ message }}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <!-- Contenedor de Exchanges - REDISEÑADO para parecer a las tarjetas de tokens -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for exchange_id, exchange_data in exchanges_config.items() %}
+            <div id="exchange-{{ exchange_id }}" class="bg-slate-800/60 backdrop-blur-sm rounded-xl shadow-lg p-4 border border-slate-700 hover:border-slate-600 transition-colors animate-slide-up"
+                 style="animation-delay: {{ loop.index0 * 100 }}ms;">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-lg font-semibold">{{ exchange_data.get('name', 'Desconocido') | upper }}</h3>
+                    <span class="px-2 py-1 text-xs rounded-full {% if status[exchange_id] %}bg-green-500/20 text-green-400 border border-green-700/30{% else %}bg-red-500/20 text-red-400 border border-red-700/30{% endif %}">
+                        <span class="i18n" data-key="{% if status[exchange_id] %}active{% else %}inactive{% endif %}">
+                            {{ 'Activo' if status[exchange_id] else 'Inactivo' }}
+                        </span>
+                    </span>
+                </div>
+
+                <div class="text-sm text-gray-400 mb-4">ID: {{ exchange_id }}</div>
+
+                <!-- Información del Exchange -->
+                <div class="space-y-2 mb-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400 text-sm i18n" data-key="pnl">PnL Total:</span>
+                        <span class="font-semibold {% if bot.get_total_pnl(user_id, exchange_id) > 0 %}text-green-400{% elif bot.get_total_pnl(user_id, exchange_id) < 0 %}text-red-400{% else %}text-gray-400{% endif %}">
+                            {{ bot.get_total_pnl(user_id, exchange_id) }}
+                        </span>
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400 text-sm i18n" data-key="tokens">Tokens:</span>
+                        <span class="bg-slate-700/30 px-2 py-1 rounded-lg text-xs">{{ exchange_data.get('symbols', [])|length }}</span>
+                    </div>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-700">
+                    <button id="toggle-{{ exchange_id }}"
+                            onclick="toggleExchangeStatus('{{ exchange_id }}')"
+                            class="{% if status[exchange_id] %}bg-red-600/20 hover:bg-red-600/30 text-red-400{% else %}bg-green-600/20 hover:bg-green-600/30 text-green-400{% endif %} font-bold py-1.5 px-3 rounded-lg text-xs transition-colors flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            {% if status[exchange_id] %}
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z" clip-rule="evenodd" />
+                            {% else %}
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                            {% endif %}
+                        </svg>
+                        {% if status[exchange_id] %}
+                            <span class="i18n" data-key="stop">Detener</span>
+                        {% else %}
+                            <span class="i18n" data-key="start">Iniciar</span>
+                        {% endif %}
+                    </button>
+
+                    <a href="{{ url_for('edit_exchange_route', exchange_id=exchange_id) }}"
+                       class="bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 font-bold py-1.5 px-3 rounded-lg text-xs transition-colors flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                        </svg>
+                        <span class="i18n" data-key="edit">Editar</span>
+                    </a>
+
+                    <button onclick="deleteExchange('{{ exchange_id }}')"
+                            class="bg-red-600/20 hover:bg-red-600/30 text-red-400 font-bold py-1.5 px-3 rounded-lg text-xs transition-colors flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="i18n" data-key="delete">Eliminar</span>
+                    </button>
+
+                    <a href="{{ url_for('view_exchange', exchange_id=exchange_id) }}"
+                       class="bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-400 font-bold py-1.5 px-3 rounded-lg text-xs transition-colors flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="i18n" data-key="viewTokens">Ver Tokens</span>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Tarjeta de "Agregar Nuevo Exchange" -->
+            <div class="bg-slate-800/30 backdrop-blur-sm border-2 border-dashed border-slate-700 rounded-xl shadow-lg overflow-hidden animate-slide-up flex items-center justify-center p-6 hover:border-slate-600 transition-colors">
+                <a href="{{ url_for('add_exchange_route') }}" class="flex flex-col items-center justify-center text-slate-500 hover:text-slate-300 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                    <span class="text-lg font-medium i18n" data-key="addNewExchange">Agregar Nuevo Exchange</span>
+                    <span class="text-sm text-slate-600 mt-1 i18n" data-key="connectExchangeAccount">Conectar cuenta de exchange</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        // Traducciones
+        const translations = {
+            es: {
+                title: "BOTXI",
+                addExchange: "Agregar Exchange",
+                active: "Activo",
+                inactive: "Inactivo",
+                start: "Iniciar",
+                stop: "Detener",
+                edit: "Editar",
+                delete: "Eliminar",
+                viewTokens: "Ver Tokens",
+                addNewExchange: "Agregar Nuevo Exchange",
+                connectExchangeAccount: "Conectar cuenta de exchange",
+                tutorial: "Tutorial",
+                changePassword: "Cambiar contraseña",
+                logout: "Cerrar Sesión",
+                pnl: "PnL Total",
+                tokens: "Tokens",
+                marketView: "Mercado",
+                menu: "Menú"
+            },
+            en: {
+                title: "BOTXI",
+                addExchange: "Add Exchange",
+                active: "Active",
+                inactive: "Inactive",
+                start: "Start",
+                stop: "Stop",
+                edit: "Edit",
+                delete: "Delete",
+                viewTokens: "View Tokens",
+                addNewExchange: "Add New Exchange",
+                connectExchangeAccount: "Connect exchange account",
+                tutorial: "Tutorial",
+                changePassword: "Change Password",
+                logout: "Logout",
+                pnl: "Total PnL",
+                marketView: "Market",
+                tokens: "Tokens",
+                menu: "Menu"
+            },
+            pt: {
+                title: "BOTXI",
+                addExchange: "Adicionar Exchange",
+                active: "Ativo",
+                inactive: "Inativo",
+                start: "Iniciar",
+                stop: "Parar",
+                edit: "Editar",
+                delete: "Eliminar",
+                viewTokens: "Ver Tokens",
+                addNewExchange: "Adicionar Novo Exchange",
+                connectExchangeAccount: "Conectar conta de exchange",
+                tutorial: "Tutorial",
+                changePassword: "Alterar Senha",
+                logout: "Encerrar Sessão",
+                pnl: "PnL Total",
+                marketView: "Mercado",
+                tokens: "Tokens",
+                menu: "Menu"
+            }
+        };
+
+        // Nombres de temas por idioma
+        const themeNames = {
+            es: {
+                dark: "Oscuro",
+                light: "Claro",
+                "blue-eye": "Azul"
+            },
+            en: {
+                dark: "Dark",
+                light: "Light",
+                "blue-eye": "Blue Eye"
+            },
+            pt: {
+                dark: "Escuro",
+light: "Claro",
+                "blue-eye": "Blue Eye"
+            },
+            pt: {
+                dark: "Escuro",
+                light: "Claro",
+                "blue-eye": "Azul"
+            }
+        };
+
+        // Inicializar configuración
+        let currentLang = localStorage.getItem('botxi-language') || 'es';
+        let currentTheme = localStorage.getItem('botxi-theme') || 'dark';
+
+        // Funciones para manejar idiomas
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('botxi-language', lang);
+            document.documentElement.setAttribute('lang', lang);
+
+            // Actualizar todos los elementos traducibles
+            document.querySelectorAll('.i18n').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (key && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // Actualizar texto del botón de idioma
+            const langButton = document.getElementById('language-submenu-button');
+            const langEmoji = lang === 'es' ? '🇪🇸' : lang === 'en' ? '🇺🇸' : '🇧🇷';
+            const langName = lang === 'es' ? 'Español' : lang === 'en' ? 'English' : 'Português';
+            if (langButton.querySelector('.language-text')) {
+                langButton.querySelector('.language-text').textContent = `${langEmoji} ${langName}`;
+            }
+
+            // Actualizar nombres de temas en el menú
+            document.querySelectorAll('.theme-name').forEach(el => {
+                const themeId = el.closest('.theme-option').getAttribute('data-theme');
+                el.textContent = themeNames[lang][themeId];
+            });
+
+            // Actualizar texto del botón de tema
+            const themeButton = document.getElementById('theme-submenu-button');
+            const themeEmoji = currentTheme === 'dark' ? '🌑' : currentTheme === 'light' ? '☀️' : '👁️';
+            const themeName = themeNames[lang][currentTheme];
+            if (themeButton.querySelector('.theme-text')) {
+                themeButton.querySelector('.theme-text').textContent = `${themeEmoji} ${themeName}`;
+            }
+        }
+
+        function setTheme(theme) {
+            currentTheme = theme;
+            localStorage.setItem('botxi-theme', theme);
+
+            const body = document.getElementById('app-body');
+            document.documentElement.className = theme;
+
+            // Aplicar clases específicas según el tema
+            if (theme === 'dark') {
+                body.className = 'bg-slate-900 text-gray-100 font-sans transition-colors duration-300';
+                document.querySelector('nav').className = 'sticky top-0 z-50 backdrop-blur-md bg-slate-900/80 border-b border-slate-800 shadow-md mb-6';
+            } else if (theme === 'light') {
+                body.className = 'bg-white text-slate-900 font-sans transition-colors duration-300';
+                document.querySelector('nav').className = 'sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-slate-300 shadow-md mb-6 text-slate-900';
+            } else if (theme === 'blue-eye') {
+                body.className = 'bg-blueEye-900 text-blueEye-100 font-sans transition-colors duration-300';
+                document.querySelector('nav').className = 'sticky top-0 z-50 backdrop-blur-md bg-blueEye-900/80 border-b border-blueEye-800 shadow-md mb-6';
+            }
+
+            // Actualizar texto del botón de tema
+            const themeButton = document.getElementById('theme-submenu-button');
+            const themeEmoji = theme === 'dark' ? '🌑' : theme === 'light' ? '☀️' : '👁️';
+            const themeName = themeNames[currentLang][theme];
+            if (themeButton.querySelector('.theme-text')) {
+                themeButton.querySelector('.theme-text').textContent = `${themeEmoji} ${themeName}`;
+            }
+        }
+
+        // Inicializar UI
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar idioma y tema
+            setLanguage(currentLang);
+            setTheme(currentTheme);
+
+            // Configurar el menú principal
+            const mainMenuButton = document.getElementById('main-menu-button');
+            const mainMenuDropdown = document.getElementById('main-menu-dropdown');
+            const langSubmenuButton = document.getElementById('language-submenu-button');
+            const langSubmenu = document.getElementById('language-submenu');
+            const themeSubmenuButton = document.getElementById('theme-submenu-button');
+            const themeSubmenu = document.getElementById('theme-submenu');
+
+            mainMenuButton.addEventListener('click', function() {
+                mainMenuDropdown.classList.toggle('hidden');
+            });
+
+            langSubmenuButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                langSubmenu.classList.toggle('hidden');
+                // Ocultar el otro submenú
+                themeSubmenu.classList.add('hidden');
+            });
+
+            themeSubmenuButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                themeSubmenu.classList.toggle('hidden');
+                // Ocultar el otro submenú
+                langSubmenu.classList.add('hidden');
+            });
+
+            // Manejar clics en las opciones de idioma
+            document.querySelectorAll('.language-option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const lang = this.getAttribute('data-lang');
+                    setLanguage(lang);
+                    langSubmenu.classList.add('hidden');
+                    mainMenuDropdown.classList.add('hidden');
+                });
+            });
+
+            // Manejar clics en las opciones de tema
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const theme = this.getAttribute('data-theme');
+                    setTheme(theme);
+                    themeSubmenu.classList.add('hidden');
+                    mainMenuDropdown.classList.add('hidden');
+                });
+            });
+
+            // Cerrar menú al hacer clic fuera
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('#main-menu-selector')) {
+                    mainMenuDropdown.classList.add('hidden');
+                    langSubmenu.classList.add('hidden');
+                    themeSubmenu.classList.add('hidden');
+                }
+            });
+
+            // Configurar toastr
+            toastr.options = {
+                "closeButton": true,
+                "positionClass": "toast-top-right",
+                "progressBar": true,
+                "timeOut": "5000"
+            };
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    toastr["{{ 'error' if category == 'error' else 'success' }}"](
+                        "{{ message }}"
+                    );
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+        });
+
+        function toggleExchangeStatus(exchangeId) {
+            const button = document.getElementById(`toggle-${exchangeId}`);
+            const isStartingElement = button.querySelector('span[data-key="start"]');
+            const isStarting = isStartingElement !== null;
+            const endpoint = isStarting ? '/start_exchange' : '/stop_exchange';
+
+            fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `exchange_id=${exchangeId}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    updateExchangeStatus(exchangeId, isStarting);
+                    toastr.success(data.message);
+                } else {
+                    toastr.error(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                toastr.error('Error al cambiar el estado del exchange');
+            });
+        }
+
+        function updateExchangeStatus(exchangeId, isActive) {
+            const button = document.getElementById(`toggle-${exchangeId}`);
+            const statusElement = document.querySelector(`#exchange-${exchangeId} .status`);
+            const statusSpan = document.querySelector(`#exchange-${exchangeId} span[data-key]`);
+
+            if (isActive) {
+                // Actualizar botón
+                button.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="i18n" data-key="stop">${translations[currentLang].stop}</span>
+                `;
+                button.className = "bg-red-600/20 hover:bg-red-600/30 text-red-400 font-bold py-1.5 px-3 rounded-lg text-xs transition-colors flex items-center";
+
+                // Actualizar indicador de estado si existe
+                if (statusSpan) {
+                    statusSpan.setAttribute('data-key', 'active');
+                    statusSpan.textContent = translations[currentLang].active;
+                    statusSpan.parentElement.className = "px-2 py-1 text-xs rounded-full bg-green-500/20 text-green-400 border border-green-700/30";
+                }
+            } else {
+                // Actualizar botón
+                button.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="i18n" data-key="start">${translations[currentLang].start}</span>
+                `;
+                button.className = "bg-green-600/20 hover:bg-green-600/30 text-green-400 font-bold py-1.5 px-3 rounded-lg text-xs transition-colors flex items-center";
+
+                // Actualizar indicador de estado si existe
+                if (statusSpan) {
+                    statusSpan.setAttribute('data-key', 'inactive');
+                    statusSpan.textContent = translations[currentLang].inactive;
+                    statusSpan.parentElement.className = "px-2 py-1 text-xs rounded-full bg-red-500/20 text-red-400 border border-red-700/30";
+                }
+            }
+        }
+
+        function deleteExchange(exchangeId) {
+            const confirmMsg = currentLang === 'es' ? '¿Estás seguro de eliminar este exchange?' :
+                              (currentLang === 'en' ? 'Are you sure you want to delete this exchange?' :
+                              'Tem certeza que deseja excluir este exchange?');
+
+            if (confirm(confirmMsg)) {
+                fetch('{{ url_for("delete_exchange_route", exchange_id="") }}' + exchangeId, {
+                    method: 'POST',
+                }).then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        const errorMsg = currentLang === 'es' ? 'Error al eliminar el exchange' :
+                                      (currentLang === 'en' ? 'Error deleting exchange' :
+                                      'Erro ao excluir o exchange');
+                        toastr.error(errorMsg);
+                    }
+                });
+            }
+        }
+
+        function updateDashboard(data) {
+            // Actualizar el estado y PnL de los exchanges
+            for (let [exchangeId, exchangeData] of Object.entries(data.exchanges_config)) {
+                let exchangeCard = document.getElementById(`exchange-${exchangeId}`);
+                if (exchangeCard) {
+                    // Actualizar PnL
+                    const pnlElement = exchangeCard.querySelector('span.font-semibold');
+                    if (pnlElement) {
+                        pnlElement.textContent = data.pnl[exchangeId];
+                        // Actualizar clase según valor PnL
+                        const pnlValue = parseFloat(data.pnl[exchangeId].replace(/[^-0-9.]/g, ''));
+                        pnlElement.className = `font-semibold ${pnlValue > 0 ? 'text-green-400' : (pnlValue < 0 ? 'text-red-400' : 'text-gray-400')}`;
+                    }
+
+                    // Actualizar estado del exchange
+                    const isActive = data.status[exchangeId];
+                    const button = document.getElementById(`toggle-${exchangeId}`);
+                    const statusSpan = exchangeCard.querySelector('span[data-key]');
+
+                    if (button) {
+                        if (isActive) {
+                            button.innerHTML = `
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="i18n" data-key="stop">${translations[currentLang].stop}</span>
+                            `;
+                            button.className = "bg-red-600/20 hover:bg-red-600/30 text-red-400 font-bold py-1.5 px-3 rounded-lg text-xs transition-colors flex items-center";
+                        } else {
+                            button.innerHTML = `
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="i18n" data-key="start">${translations[currentLang].start}</span>
+                            `;
+                            button.className = "bg-green-600/20 hover:bg-green-600/30 text-green-400 font-bold py-1.5 px-3 rounded-lg text-xs transition-colors flex items-center";
+                        }
+                    }
+
+                    if (statusSpan) {
+                        if (isActive) {
+                            statusSpan.setAttribute('data-key', 'active');
+                            statusSpan.textContent = translations[currentLang].active;
+                            statusSpan.parentElement.className = "px-2 py-1 text-xs rounded-full bg-green-500/20 text-green-400 border border-green-700/30";
+                        } else {
+                            statusSpan.setAttribute('data-key', 'inactive');
+                            statusSpan.textContent = translations[currentLang].inactive;
+                            statusSpan.parentElement.className = "px-2 py-1 text-xs rounded-full bg-red-500/20 text-red-400 border border-red-700/30";
+                        }
+                    }
+                }
+            }
+        }
+
+        // EventSource para refrescar la info en tiempo real
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const userId = "{{ user_id }}"; // Obtener el user_id del servidor
+            const evtSource = new EventSource(`/stream/${userId}`);
+            evtSource.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                updateDashboard(data);
+            }
+            evtSource.onerror = function(err) {
+                console.error("EventSource failed:", err);
+                evtSource.close();
+            }
+        });
+    </script>
+</body>
+</html>
